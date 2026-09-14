@@ -45,8 +45,8 @@
   .stamp b { color: var(--accent); font-weight: 500; }
 
   /* Hero */
-  .hero { display: grid; grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr); gap: 40px; align-items: end; padding-block: 56px 28px; }
-  @media (max-width: 860px) { .hero { grid-template-columns: 1fr; gap: 28px; } }
+  .hero { padding-block: 56px 28px; }
+  .hero .draft { max-width: 920px; margin: 40px auto 0; }
   .eyebrow { font-family: "IBM Plex Mono", monospace; font-size: 12.5px; letter-spacing: .12em; text-transform: uppercase; color: var(--ink-3); margin: 0 0 18px; }
   h1 { font-family: Archivo, sans-serif; font-weight: 800; font-stretch: 125%; font-size: clamp(38px, 6.2vw, 68px); line-height: .98; letter-spacing: -.01em; margin: 0 0 22px; text-wrap: balance; }
   h1 em { font-style: normal; color: var(--accent); }
@@ -149,75 +149,96 @@
   </div>
 
   <figure class="draft" aria-label="Module map, mirroring Google's Now in Android reference app">
-    <svg viewBox="0 0 560 470" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="figt">
-      <title id="figt">Module map as in Now in Android: app depends on feature and core modules; feature impl modules depend on core modules and only on other features' api modules; core modules never depend on features; data sources sit under core:data; build-logic convention plugins configure every module</title>
-      <defs><marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#B9C6D6"/></marker></defs>
+    <svg viewBox="0 0 920 560" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="figt">
+      <title id="figt">Module dependency graph as in Now in Android: app depends on all feature api and impl modules and on core modules and sync:work; feature api modules depend on core:navigation; feature impl modules depend on core:ui, core:designsystem, core:domain, core:notifications and other features' api; core:domain depends on core:data; core:data depends on core:database, core:datastore, core:network, core:analytics, core:notifications and core:common; sync:work depends on core:data, core:analytics and core:notifications; build-logic convention plugins and lint apply to every module</title>
+      <defs><marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#B9C6D6"/></marker>
+      <marker id="arg" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#7BE0A8"/></marker></defs>
       <g font-family="IBM Plex Mono, monospace" font-size="9.5" fill="#7F93AB" letter-spacing="1.5">
-        <text x="12" y="30">APP</text><text x="12" y="112">FEATURE</text><text x="12" y="222">CORE</text><text x="12" y="316">DATA SOURCES</text><text x="12" y="424">BUILD-LOGIC</text>
+        <text x="12" y="28">APP</text><text x="12" y="82">FEATURE</text><text x="12" y="176">CORE · UI + DOMAIN</text><text x="12" y="266">CORE · DATA</text><text x="12" y="356">CORE · SOURCES + LEAVES</text><text x="12" y="466">TOOLING</text>
       </g>
       <g stroke="#FFFFFF" stroke-opacity=".14" stroke-dasharray="3 5" fill="none">
-        <line x1="12" y1="42" x2="548" y2="42"/><line x1="12" y1="176" x2="548" y2="176"/><line x1="12" y1="272" x2="548" y2="272"/><line x1="12" y1="372" x2="548" y2="372"/>
+        <line x1="12" y1="48" x2="908" y2="48"/><line x1="12" y1="150" x2="908" y2="150"/><line x1="12" y1="240" x2="908" y2="240"/><line x1="12" y1="330" x2="908" y2="330"/><line x1="12" y1="420" x2="908" y2="420"/>
       </g>
-      <!-- app -->
-      <rect x="216" y="10" width="128" height="30" rx="2" fill="none" stroke="#F3F6FA" stroke-width="1.4"/>
-      <text x="280" y="30" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="12" fill="#F3F6FA">:app</text>
-      <!-- features: api + impl -->
+      <!-- APP -->
+      <rect x="401" y="10" width="118" height="28" rx="2" fill="none" stroke="#F3F6FA" stroke-width="1.4"/>
+      <text x="460" y="29" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="12" fill="#F3F6FA">:app</text>
+      <!-- FEATURES api/impl -->
       <g fill="none" stroke="#F3F6FA" stroke-width="1.2">
-        <rect x="96" y="62" width="120" height="26" rx="2"/><rect x="96" y="92" width="120" height="26" rx="2"/>
-        <rect x="220" y="62" width="120" height="26" rx="2"/><rect x="220" y="92" width="120" height="26" rx="2"/>
-        <rect x="344" y="62" width="120" height="26" rx="2"/><rect x="344" y="92" width="120" height="26" rx="2"/>
+        <rect x="181" y="64" width="138" height="24" rx="2"/><rect x="181" y="94" width="138" height="24" rx="2"/>
+        <rect x="391" y="64" width="138" height="24" rx="2"/><rect x="391" y="94" width="138" height="24" rx="2"/>
+        <rect x="601" y="64" width="138" height="24" rx="2"/><rect x="601" y="94" width="138" height="24" rx="2"/>
       </g>
       <g font-family="IBM Plex Mono, monospace" font-size="10" fill="#F3F6FA" text-anchor="middle">
-        <text x="156" y="79">:feature:foryou:api</text><text x="156" y="109">:feature:foryou:impl</text>
-        <text x="280" y="79">:feature:search:api</text><text x="280" y="109">:feature:search:impl</text>
-        <text x="404" y="79">:feature:topic:api</text><text x="404" y="109">:feature:topic:impl</text>
+        <text x="250" y="80">:feature:foryou:api</text><text x="250" y="110">:feature:foryou:impl</text>
+        <text x="460" y="80">:feature:search:api</text><text x="460" y="110">:feature:search:impl</text>
+        <text x="670" y="80">:feature:topic:api</text><text x="670" y="110">:feature:topic:impl</text>
       </g>
-      <!-- core -->
+      <!-- CORE row 1 -->
       <g fill="none" stroke="#F3F6FA" stroke-width="1.2">
-        <rect x="40" y="192" width="86" height="28" rx="2"/><rect x="134" y="192" width="86" height="28" rx="2"/><rect x="228" y="192" width="86" height="28" rx="2"/><rect x="322" y="192" width="100" height="28" rx="2"/><rect x="430" y="192" width="90" height="28" rx="2"/>
+        <rect x="42" y="186" width="116" height="26" rx="2"/><rect x="174" y="186" width="116" height="26" rx="2"/><rect x="322" y="186" width="116" height="26" rx="2"/><rect x="466" y="186" width="116" height="26" rx="2"/><rect x="610" y="186" width="116" height="26" rx="2"/><rect x="754" y="186" width="116" height="26" rx="2"/>
       </g>
       <g font-family="IBM Plex Mono, monospace" font-size="10" fill="#F3F6FA" text-anchor="middle">
-        <text x="83" y="210">:core:ui</text><text x="177" y="210">:core:domain</text><text x="271" y="210">:core:data</text><text x="372" y="210">:core:designsystem</text><text x="475" y="210">:core:common</text>
+        <text x="100" y="203">:core:navigation</text><text x="232" y="203">:core:ui</text><text x="380" y="203">:core:designsystem</text><text x="524" y="203">:core:domain</text><text x="668" y="203">:core:notifications</text><text x="812" y="203">:core:analytics</text>
       </g>
-      <!-- data sources -->
+      <!-- CORE row 2 -->
+      <g fill="none" stroke="#F3F6FA" stroke-width="1.2"><rect x="466" y="276" width="116" height="26" rx="2"/><rect x="754" y="276" width="116" height="26" rx="2"/></g>
+      <g font-family="IBM Plex Mono, monospace" font-size="10" fill="#F3F6FA" text-anchor="middle"><text x="524" y="293">:core:data</text><text x="812" y="293">:sync:work</text></g>
+      <!-- SOURCES + LEAVES -->
       <g fill="none" stroke="#F3F6FA" stroke-width="1.2">
-        <rect x="96" y="290" width="96" height="28" rx="2"/><rect x="200" y="290" width="96" height="28" rx="2"/><rect x="304" y="290" width="96" height="28" rx="2"/><rect x="408" y="290" width="96" height="28" rx="2"/>
+        <rect x="42" y="366" width="116" height="26" rx="2"/><rect x="174" y="366" width="116" height="26" rx="2"/>
+        <rect x="322" y="366" width="116" height="26" rx="2"/><rect x="466" y="366" width="116" height="26" rx="2"/><rect x="610" y="366" width="116" height="26" rx="2"/>
       </g>
       <g font-family="IBM Plex Mono, monospace" font-size="10" fill="#F3F6FA" text-anchor="middle">
-        <text x="144" y="308">:core:database</text><text x="248" y="308">:core:datastore</text><text x="352" y="308">:core:network</text><text x="456" y="308">:core:model</text>
+        <text x="100" y="383">:core:model</text><text x="232" y="383">:core:common</text>
+        <text x="380" y="383">:core:database</text><text x="524" y="383">:core:datastore</text><text x="668" y="383">:core:network</text>
       </g>
-      <!-- side modules -->
-      <g fill="none" stroke="#7F93AB" stroke-width="1" stroke-dasharray="4 3">
-        <rect x="12" y="336" width="76" height="24" rx="2"/><rect x="472" y="336" width="76" height="24" rx="2"/>
-      </g>
-      <g font-family="IBM Plex Mono, monospace" font-size="9.5" fill="#B9C6D6" text-anchor="middle">
-        <text x="50" y="352">:sync:work</text><text x="510" y="352">:core:testing</text>
-      </g>
-      <!-- build-logic -->
-      <rect x="120" y="396" width="320" height="30" rx="2" fill="none" stroke="#FF7A1A" stroke-width="1.4"/>
-      <text x="280" y="416" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="11" fill="#FF7A1A">build-logic · convention plugins · lint · AGENTS.md</text>
-      <!-- arrows: app → features + core -->
+      <!-- TOOLING -->
+      <rect x="300" y="452" width="320" height="28" rx="2" fill="none" stroke="#FF7A1A" stroke-width="1.4"/>
+      <text x="460" y="471" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="11" fill="#FF7A1A">build-logic · convention plugins · AGENTS.md</text>
+      <g fill="none" stroke="#7F93AB" stroke-width="1" stroke-dasharray="4 3"><rect x="42" y="452" width="116" height="26" rx="2"/><rect x="754" y="452" width="116" height="26" rx="2"/></g>
+      <g font-family="IBM Plex Mono, monospace" font-size="10" fill="#B9C6D6" text-anchor="middle"><text x="100" y="469">:lint</text><text x="812" y="469">:core:testing</text></g>
+
+      <!-- EDGES: app → features (api + impl) -->
       <g stroke="#B9C6D6" stroke-width="1" fill="none" marker-end="url(#ar)">
-        <path d="M250,40 L170,60"/><path d="M280,40 L280,60"/><path d="M310,40 L390,60"/>
-        <path d="M150,118 L92,190"/><path d="M158,118 L170,190"/><path d="M166,118 L262,190"/>
-        <path d="M272,118 L186,190"/><path d="M280,118 L272,190"/><path d="M290,118 L366,190"/>
-        <path d="M398,118 L282,190"/><path d="M406,118 L378,190"/><path d="M416,118 L468,190"/>
-        <path d="M177,220 L262,288"/>
-        <path d="M262,220 L152,288"/><path d="M268,220 L250,288"/><path d="M276,220 L346,288"/><path d="M284,220 L446,288"/>
-        <path d="M83,220 L360,290"/>
+        <path d="M430,38 L262,62"/><path d="M460,38 L460,62"/><path d="M490,38 L658,62"/>
+        <!-- app → sync:work (right margin) and app → core (left margin), drawn as rails -->
+        <path d="M519,24 C700,24 812,120 812,274"/>
+        <path d="M401,24 C110,24 60,120 226,184"/>
       </g>
-      <!-- impl → another feature's api (allowed), dashed -->
-      <path d="M216,105 C230,80 250,75 300,74" stroke="#7BE0A8" stroke-width="1" fill="none" stroke-dasharray="3 3" marker-end="url(#ar)"/>
-      <!-- build-logic applies to all (dashed orange up) -->
+      <!-- api → core:navigation -->
+      <g stroke="#B9C6D6" stroke-width="1" fill="none" marker-end="url(#ar)">
+        <path d="M181,76 C130,80 104,120 100,184"/>
+        <path d="M391,72 C300,50 120,60 104,184"/>
+        <path d="M601,70 C420,40 118,50 108,184"/>
+      </g>
+      <!-- impl → ui, designsystem, domain, notifications -->
+      <g stroke="#B9C6D6" stroke-width="1" fill="none" marker-end="url(#ar)">
+        <path d="M230,118 L232,184"/><path d="M262,118 L372,184"/><path d="M290,118 L514,184"/><path d="M312,118 L652,184"/>
+        <path d="M420,118 L244,184"/><path d="M448,118 L386,184"/><path d="M470,118 L520,184"/><path d="M500,118 L662,184"/>
+        <path d="M620,118 L256,184"/><path d="M640,118 L396,184"/><path d="M660,118 L532,184"/><path d="M680,118 L668,184"/>
+      </g>
+      <!-- impl → other feature api (allowed) -->
+      <path d="M319,100 C360,60 560,52 604,66" stroke="#7BE0A8" stroke-width="1" fill="none" stroke-dasharray="3 3" marker-end="url(#arg)"/>
+      <!-- ui → designsystem ; domain → data ; data → sources, analytics, notifications ; sync → data, notifications, analytics -->
+      <g stroke="#B9C6D6" stroke-width="1" fill="none" marker-end="url(#ar)">
+        <path d="M290,199 L320,199"/>
+        <path d="M524,212 L524,274"/>
+        <path d="M500,302 L390,364"/><path d="M524,302 L524,364"/><path d="M548,302 L658,364"/>
+        <path d="M582,286 L640,214"/><path d="M582,282 L790,214"/>
+        <path d="M754,289 L584,289"/><path d="M780,276 L700,214"/><path d="M812,276 L812,214"/>
+      </g>
+      <!-- build-logic applies to all -->
       <g stroke="#FF7A1A" stroke-opacity=".5" stroke-width="1" stroke-dasharray="2 4" fill="none">
-        <path d="M200,394 L200,320"/><path d="M280,394 L280,320"/><path d="M360,394 L360,320"/>
+        <path d="M380,450 L380,394"/><path d="M460,450 L460,320"/><path d="M540,450 L540,394"/>
       </g>
-      <!-- annotations (the three rules) -->
+      <!-- RULES -->
       <g font-family="IBM Plex Mono, monospace" font-size="9.5" fill="#7F93AB">
-        <text x="12" y="140">rule 1 · impl depends on other features only via their :api</text>
-        <text x="12" y="248">rule 2 · core never depends on feature or app</text>
-        <text x="12" y="386">rule 3 · every module gets the same plugins, lint and tests</text>
-        <text x="548" y="458" text-anchor="end">module names as in Now in Android · scale 1 → 40+ modules</text>
+        <text x="12" y="138">rule 1 · an impl depends on other features only through their :api (green) · every :api depends on :core:navigation</text>
+        <text x="12" y="228">rule 2 · core never depends on feature or app · features reach data only through :core:domain</text>
+        <text x="12" y="318">rule 3 · :app also depends on :core:ui, :designsystem, :data, :model, :common, :analytics (left rail) and :sync:work (right rail)</text>
+        <text x="12" y="408">leaves · :core:model and :core:common are used by ui, domain, data, network, database, datastore, notifications — arrows omitted for clarity</text>
+        <text x="12" y="498">rule 4 · every module is configured by the same convention plugins, lint checks and test rules</text>
+        <text x="908" y="548" text-anchor="end">module names and edges as declared in Now in Android's build files · scale 1 → 40+ modules</text>
       </g>
     </svg>
   </figure>
