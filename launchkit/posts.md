@@ -10,7 +10,7 @@ What would you want in it?
 
 ## Indie Hackers (Products → add; then a post)
 Title: Pre-selling a Jetpack Compose launch kit (Play Billing, paywall, onboarding, CI) — $79 founder price
-Body: React Native and web have ShipFast-style kits; native Android has none with billing and a paywall. I'm pre-selling one before building it: page + honest terms (ships 15 Oct, full refund otherwise). Looking for feedback on the feature list and price.
+Body: React Native and web have ShipFast-style kits; native Android has none with billing and a paywall. I'm pre-selling one before building it: page + honest terms (v1 ships 1 Oct, full refund otherwise). Looking for feedback on the feature list and price.
 
 ## Hacker News — Show HN (only after ≥1 pre-order, so it's not vapor)
 Title: Show HN: LaunchKit – a Jetpack Compose starter with Play Billing and a paywall (pre-order)
