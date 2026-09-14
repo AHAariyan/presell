@@ -1,0 +1,33 @@
+Your Android codebase has a half-life.
+
+Day 1: clean layers, tidy modules.
+Month 6: a ViewModel calls a DAO "just this once", a Composable does business logic, and the AI agent you let commit last week added a fourth navigation pattern.
+
+We built the kit that stops the decay. 🧵
+
+=====
+
+It starts from Google's own architecture: the exact module graph of Now in Android.
+:app → :feature:*:api/impl → :core:* → data sources, convention plugins underneath.
+
+Not "inspired by". Same names, same rules. Fig. 1 on the page is drawn from NIA's build files.
+
+=====
+
+Then it adds what Google's sample doesn't ship:
+• lint that FAILS THE BUILD when a layer is crossed
+• a code of conduct for the codebase
+• AGENTS.md so Claude / Gemini / Cursor extend the app without eroding it
+• tests at every layer + a guide that says how much is enough
+
+=====
+
+And the boring parts every paid app rebuilds:
+Play Billing 9 + a real paywall, onboarding, settings, optional sign-in, analytics/crash hooks behind interfaces, in-app review, privacy + Data-safety generators, CI to a signed bundle.
+
+=====
+
+v1 ships 1 Oct. Early bird $79 (then $149). Reserve now, no card needed:
+https://ahaariyan.github.io/presell/launchkit/
+
+What's the one rule you wish your build enforced automatically?
