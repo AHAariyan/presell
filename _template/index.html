@@ -345,7 +345,7 @@
         <li>Full refund if v1 does not ship on the date</li>
       </ul>
     </div>
-    <a class="btn primary" id="buy2" href="#">Pre-order for $79</a>
+    <a class="btn primary" id="buy2" href="#order">Pre-order for $79</a>
   </div>
   <p class="note">Pre-order means exactly that: the kit is being built from the architecture behind five apps already on Google Play, and version 1 ships on 1 October 2026 with everything in the spec sheet. Miss the date, and every order is refunded in full.</p>
 </section>
@@ -356,13 +356,13 @@
   <details><summary>Can I start small? I have one screen and no team.</summary><p>Yes. Version 1 includes a single-module starting point that uses the same rules. When the app grows, the module map, convention plugins and lint rules are already there — you move code, you don't rewrite it.</p></details>
   <details><summary>Which AI tools does the agent guideline work with?</summary><p>Any that read repository instructions: Claude Code, Gemini CLI, Cursor, GitHub Copilot, Codex. The guideline is plain Markdown, per module, with the commands and tests each change must pass.</p></details>
   <details><summary>Does it lock me into Firebase or any service?</summary><p>No. Analytics, crash reporting and sign-in sit behind interfaces with no-op implementations. Delete what you don't use.</p></details>
-  <details><summary>What exactly happens when I click pre-order?</summary><p>You pay $79 through Gumroad (VAT handled) and receive a receipt. On 1 October you get access to the private repository and the docs. If we miss the date, you're refunded in full automatically.</p></details>
+  <details><summary>What exactly happens when I click pre-order?</summary><p>Checkout runs through Gumroad (VAT handled): you pay $79 and receive a receipt; on 1 October you get access to the private repository and the docs. If we miss the date, you're refunded in full automatically. While the checkout link is being connected, the button shows "Checkout opens shortly" — nothing is charged and no order is taken until it's live.</p></details>
   <details><summary>License?</summary><p>Use it in unlimited apps, personal or commercial, including client work. You may not resell or redistribute the kit itself.</p></details>
 </section>
 
 <footer>
   <p>LaunchKit for Android is an independent product and is not affiliated with Google. Android, Google Play and Jetpack Compose are trademarks of Google LLC.</p>
-  <p><a href="mailto:hello@appreviewreply.app">hello@appreviewreply.app</a></p>
+  <p id="contact"></p>
 </footer>
 </div>
 
@@ -370,12 +370,14 @@
   // Checkout wiring: set CHECKOUT_URL to the Gumroad product link when it exists.
   // Until then the buttons open an email draft, which counts as a reservation.
   var CHECKOUT_URL = "";
-  var MAILTO = "mailto:hello@appreviewreply.app?subject=LaunchKit%20early-bird%20pre-order&body=I%20want%20to%20pre-order%20LaunchKit%20for%20Android%20at%20%2479.%0AMy%20Play%20developer%20name%3A%20";
+  // FALLBACK_MAILTO must be an address the owner actually owns; leave empty to disable email reservations.
+  var FALLBACK_MAILTO = "";
   ["buy", "buy2"].forEach(function (id) {
     var a = document.getElementById(id);
     if (!a) return;
     if (CHECKOUT_URL) { a.href = CHECKOUT_URL; a.target = "_blank"; a.rel = "noopener"; }
-    else if (id === "buy2") { a.href = MAILTO; }
+    else if (FALLBACK_MAILTO) { a.href = FALLBACK_MAILTO; }
+    else { a.href = "#order"; if (id === "buy2") { a.textContent = "Checkout opens shortly"; a.setAttribute("aria-disabled", "true"); a.style.opacity = ".6"; } }
   });
 </script>
 </body>
