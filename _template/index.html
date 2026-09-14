@@ -30,7 +30,7 @@
   body {
     margin: 0; background: var(--bp); color: var(--ink);
     font: 17px/1.6 "IBM Plex Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-    padding-block: 0 72px; padding-inline: 20px;
+    padding-block: 0 120px; padding-inline: 20px;
     background-image:
       linear-gradient(var(--grid) 1px, transparent 1px),
       linear-gradient(90deg, var(--grid) 1px, transparent 1px);
@@ -127,6 +127,12 @@
   footer a { color: var(--ink-3); }
   @media (prefers-reduced-motion: no-preference) { .btn { transition: transform .12s ease; } .btn:active { transform: translateY(1px); } }
   a:focus-visible, summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+  .sticky { position: fixed; left: 0; right: 0; bottom: 0; z-index: 20; background: rgba(10,31,54,.92); backdrop-filter: blur(8px); border-top: 1px solid var(--line); padding: 10px 20px; }
+  .sticky-in { max-width: 1040px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; gap: 14px; flex-wrap: wrap; }
+  .sticky-txt { font-family: "IBM Plex Mono", monospace; font-size: 13px; color: var(--ink-2); }
+  .sticky-txt b { color: var(--ink); font-size: 15px; }
+  .sticky .btn { padding: 11px 18px; font-size: 15px; }
+  @media (max-width: 560px) { .sticky-txt { display: none; } .sticky-in { justify-content: center; } }
 </style>
 </head>
 <body>
@@ -142,7 +148,7 @@
     <h1>The last time you'll <em>think</em> about architecture.</h1>
     <p class="lede">A production Android codebase built exactly the way Google recommends — and kept that way by lint rules, a code of conduct, an AI-agent guideline, and a test suite that grows with the app. Start at one module. Grow to forty without a rewrite.</p>
     <div class="cta-row">
-      <a class="btn primary" id="buy" href="#order">Pre-order · $79 early bird</a>
+      <a class="btn primary" id="buy" href="#order">Reserve · $79 early bird</a>
       <a class="btn" href="#spec">Read the spec sheet</a>
     </div>
     <p class="fine"><b>Regular price $149.</b> Early bird for the first 50 orders. Version 1 ships 1 October 2026; full refund if it doesn't.</p>
@@ -345,7 +351,7 @@
         <li>Full refund if v1 does not ship on the date</li>
       </ul>
     </div>
-    <a class="btn primary" id="buy2" href="#order">Pre-order for $79</a>
+    <a class="btn primary" id="buy2" href="#order">Reserve for $79 — no card needed</a>
   </div>
   <p class="note">Pre-order means exactly that: the kit is being built from the architecture behind five apps already on Google Play, and version 1 ships on 1 October 2026 with everything in the spec sheet. Miss the date, and every order is refunded in full.</p>
 </section>
@@ -356,7 +362,7 @@
   <details><summary>Can I start small? I have one screen and no team.</summary><p>Yes. Version 1 includes a single-module starting point that uses the same rules. When the app grows, the module map, convention plugins and lint rules are already there — you move code, you don't rewrite it.</p></details>
   <details><summary>Which AI tools does the agent guideline work with?</summary><p>Any that read repository instructions: Claude Code, Gemini CLI, Cursor, GitHub Copilot, Codex. The guideline is plain Markdown, per module, with the commands and tests each change must pass.</p></details>
   <details><summary>Does it lock me into Firebase or any service?</summary><p>No. Analytics, crash reporting and sign-in sit behind interfaces with no-op implementations. Delete what you don't use.</p></details>
-  <details><summary>What exactly happens when I click pre-order?</summary><p>Checkout runs through Gumroad (VAT handled): you pay $79 and receive a receipt; on 1 October you get access to the private repository and the docs. If we miss the date, you're refunded in full automatically. While the checkout link is being connected, the button shows "Checkout opens shortly" — nothing is charged and no order is taken until it's live.</p></details>
+  <details><summary>What exactly happens when I click pre-order?</summary><p>Checkout runs through Gumroad (VAT handled): you pay $79 and receive a receipt; on 1 October you get access to the private repository and the docs. If we miss the date, you're refunded in full automatically. Right now we are in the reservation phase: the button opens an email to us with your reservation pre-filled — no card, nothing charged. Reservations get the $79 early-bird price when checkout opens.</p></details>
   <details><summary>License?</summary><p>Use it in unlimited apps, personal or commercial, including client work. You may not resell or redistribute the kit itself.</p></details>
 </section>
 
@@ -366,19 +372,36 @@
 </footer>
 </div>
 
+<div class="sticky" id="sticky" hidden>
+  <div class="sticky-in">
+    <span class="sticky-txt"><b>$79</b> early bird · <s>$149</s> · v1 ships 1 Oct · no card needed to reserve</span>
+    <a class="btn primary" id="buy3" href="#order">Reserve for $79</a>
+  </div>
+</div>
 <script>
   // Checkout wiring: set CHECKOUT_URL to the Gumroad product link when it exists.
   // Until then the buttons open an email draft, which counts as a reservation.
   var CHECKOUT_URL = "";
   // FALLBACK_MAILTO must be an address the owner actually owns; leave empty to disable email reservations.
-  var FALLBACK_MAILTO = "";
-  ["buy", "buy2"].forEach(function (id) {
+  var FALLBACK_MAILTO = "mailto:onnorokominnovation0@gmail.com?subject=LaunchKit%20early-bird%20reservation%20(%2479)&body=Hi%2C%0A%0AI%20want%20to%20reserve%20LaunchKit%20for%20Android%20at%20the%20%2479%20early-bird%20price.%0A%0AMy%20Play%20developer%20name%20or%20app%3A%20%0AWhat%20I%20most%20want%20from%20it%3A%20%0A%0AThanks";
+  ["buy", "buy2", "buy3"].forEach(function (id) {
     var a = document.getElementById(id);
     if (!a) return;
     if (CHECKOUT_URL) { a.href = CHECKOUT_URL; a.target = "_blank"; a.rel = "noopener"; }
     else if (FALLBACK_MAILTO) { a.href = FALLBACK_MAILTO; }
     else { a.href = "#order"; if (id === "buy2") { a.textContent = "Checkout opens shortly"; a.setAttribute("aria-disabled", "true"); a.style.opacity = ".6"; } }
   });
+  // Sticky reserve bar after the hero scrolls away
+  (function () {
+    var bar = document.getElementById("sticky"), hero = document.querySelector(".hero"), order = document.getElementById("order");
+    if (!bar || !hero) return;
+    function tick() {
+      var past = window.scrollY > hero.offsetTop + hero.offsetHeight * 0.6;
+      var atOrder = order && (order.getBoundingClientRect().top < window.innerHeight * 0.7);
+      bar.hidden = !(past && !atOrder);
+    }
+    window.addEventListener("scroll", tick, { passive: true }); window.addEventListener("resize", tick); tick();
+  })();
 </script>
 </body>
 </html>
