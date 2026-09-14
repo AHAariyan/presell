@@ -3,26 +3,26 @@
 Page: https://ahaariyan.github.io/presell/launchkit/
 
 ## X (product account; pin it)
-Every paid Android app needs the same 8 things before the first user: Play Billing + paywall, onboarding, settings, sign-in, analytics/crash hooks, review prompt, privacy + Data-safety docs, CI.
-We built them once for 5 apps. Now it's a kit: LaunchKit for Android (Jetpack Compose).
-Pre-order, $79 for the first 50 → https://ahaariyan.github.io/presell/launchkit/
-What would you want in it?
+Every Android starter kit gives you screens. None gives you the discipline.
+LaunchKit is a production codebase on Google's recommended architecture — with lint rules that fail the build on layer violations, an AGENTS.md so Claude/Gemini/Cursor extend it without breaking it, and tests at every layer.
+Plus the launch modules: Play Billing + paywall, onboarding, settings, CI.
+Early bird $79 (regular $149), v1 ships 1 Oct → https://ahaariyan.github.io/presell/launchkit/
+What's the one rule you wish your codebase enforced automatically?
 
-## Indie Hackers (Products → add; then a post)
-Title: Pre-selling a Jetpack Compose launch kit (Play Billing, paywall, onboarding, CI) — $79 founder price
-Body: React Native and web have ShipFast-style kits; native Android has none with billing and a paywall. I'm pre-selling one before building it: page + honest terms (v1 ships 1 Oct, full refund otherwise). Looking for feedback on the feature list and price.
+## Indie Hackers
+Title: Pre-selling an Android codebase that stays world-class after you stop looking at it (early bird $79)
+Body: Google's recommended architecture end-to-end, scoped from one module to 40+; custom lint + a code of conduct; an AI-agent guideline; unit/ViewModel/UI/screenshot tests with guidance; launch modules (Play Billing, paywall, onboarding, settings, CI). Pre-order with an honest refund promise (v1 ships 1 Oct). Feedback wanted on the spec sheet and price.
 
-## Hacker News — Show HN (only after ≥1 pre-order, so it's not vapor)
-Title: Show HN: LaunchKit – a Jetpack Compose starter with Play Billing and a paywall (pre-order)
-Body: what it includes, why Now-in-Android doesn't cover it, what's optional, the refund promise. Ask: what part of shipping an Android app wastes the most of your time?
+## Hacker News — Show HN (after ≥1 paid pre-order)
+Title: Show HN: LaunchKit – Android codebase with Google's architecture, lint guardrails, and an AGENTS.md (pre-order)
+Body: why "Now in Android" isn't a shippable base, what the lint rules enforce, how the agent guideline is written, what the test suite covers. Ask: how do you keep architecture from eroding once agents start committing?
 
-## Product Hunt — "Coming soon" page
-Tagline: Ship your Android app in days, not months.
-First comment: the 8 things every paid Android app needs, and that the kit is pre-order with a refund guarantee.
+## Product Hunt — "Coming soon"
+Tagline: The last time you'll think about Android architecture.
 
-## r/androiddev (owner posts; check the self-promo rule / weekly thread)
-Title: Pre-selling an Android launch kit (Compose + Play Billing + paywall + onboarding + CI) — would you pay $79?
+## r/androiddev (owner posts; check self-promo rules)
+Title: Pre-selling a Compose codebase built on Google's recommended architecture, with lint guardrails, an AI-agent guideline and full tests — would you pay $79?
 Body: same as IH, end with the question.
 
 ## 10 direct DMs
-Search X for "Play Billing" + "hours" / "paywall" + "Compose" / "why is Google Play billing so"; DM: one line, the link, "would this have saved you time?"
+Search X for "modularization" + "Android" + pain, "Now in Android" + "too complex", "agents keep breaking my architecture". One line + link: "would this have saved you the rewrite?"

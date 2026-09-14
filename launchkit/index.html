@@ -4,113 +4,347 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>LaunchKit for Android</title>
-<meta name="description" content="A Jetpack Compose launch kit with Play Billing, paywall, onboarding, settings, analytics and CI wired up. Ship your Android app in days, not months. Pre-order at the founder price.">
+<meta name="description" content="A production Android codebase built on Google's recommended architecture, with lint rules, AI-agent guidelines and a full test suite — plus the launch modules every paid app needs. Early-bird pre-order.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700&family=Source+Sans+3:wght@400;600&family=JetBrains+Mono:wght@500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@112,700;125,800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
 <style>
-  :root { --paper:#FAFAF7; --ink:#14181F; --ink2:#5B6270; --ink3:#8A909B; --line:#E4E5E9; --accent:#7F52FF; --accent-2:#3DDC84; --tint:#F3EEFF; --code:#0F1218; }
-  @media (prefers-color-scheme: dark) { :root { --paper:#0F1218; --ink:#F2F3F5; --ink2:#B4B9C3; --ink3:#7C8391; --line:#262B35; --accent:#9B7BFF; --tint:#1E1A2E; --code:#05070A; } }
-  * { box-sizing:border-box; }
-  body { margin:0; background:var(--paper); color:var(--ink); font:17px/1.55 "Source Sans 3", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; padding-block:0 60px; padding-inline:20px; }
-  header, main, footer { max-width: 980px; margin: 0 auto; }
-  header { display:flex; justify-content:space-between; align-items:center; padding-block:22px; gap:12px; flex-wrap:wrap; }
-  .brand { font-family:Sora, sans-serif; font-weight:700; font-size:20px; text-decoration:none; color:var(--ink); letter-spacing:-.2px; }
-  .brand span { color:var(--accent); }
-  .pill { font-family:"JetBrains Mono", monospace; font-size:12px; color:var(--accent); background:var(--tint); padding:4px 10px; border-radius:999px; }
-  h1 { font-family:Sora, sans-serif; font-size:clamp(34px, 5.6vw, 56px); line-height:1.05; letter-spacing:-.8px; margin:36px 0 16px; max-width:18ch; text-wrap:balance; }
-  .sub { font-size:21px; color:var(--ink2); max-width:56ch; margin:0 0 26px; }
-  .row { display:flex; gap:14px; flex-wrap:wrap; align-items:center; }
-  .btn { display:inline-block; background:var(--accent); color:#fff; padding:14px 22px; border-radius:12px; font-weight:600; text-decoration:none; font-size:17px; }
-  .btn.ghost { background:transparent; color:var(--ink); border:1.5px solid var(--line); }
-  .fine { color:var(--ink3); font-size:14px; }
-  .shots { margin:44px 0 10px; border-radius:20px; overflow:hidden; background:linear-gradient(135deg, var(--tint), transparent); padding:22px 10px 0; }
-  .shots img { width:100%; display:block; max-width:100%; }
-  .caption { color:var(--ink3); font-size:14px; margin:8px 0 40px; }
-  h2 { font-family:Sora, sans-serif; font-size:28px; letter-spacing:-.3px; margin:44px 0 16px; }
-  .grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(250px, 1fr)); gap:14px; }
-  .card { border:1px solid var(--line); border-radius:14px; padding:16px 18px; }
-  .card h3 { margin:0 0 6px; font-size:17px; font-family:Sora, sans-serif; font-weight:600; }
-  .card p { margin:0; color:var(--ink2); font-size:15.5px; }
-  .card code { font-family:"JetBrains Mono", monospace; font-size:12.5px; color:var(--accent); }
-  .stack { display:flex; flex-wrap:wrap; gap:8px; margin:12px 0 0; }
-  .stack span { font-family:"JetBrains Mono", monospace; font-size:12.5px; border:1px solid var(--line); border-radius:8px; padding:4px 9px; color:var(--ink2); }
-  .price { margin:30px 0; border:2px solid var(--accent); border-radius:18px; padding:26px; display:grid; grid-template-columns: 1fr auto; gap:20px; align-items:center; background:var(--tint); }
-  .price .amt { font-family:Sora, sans-serif; font-size:44px; font-weight:700; line-height:1; }
-  .price .amt s { font-size:22px; color:var(--ink3); font-weight:600; margin-left:10px; }
-  .price ul { margin:12px 0 0; padding-left:18px; color:var(--ink2); }
-  .price li { margin:4px 0; }
-  @media (max-width:640px) { .price { grid-template-columns:1fr; } }
-  .honest { border-left:3px solid var(--accent-2); padding:10px 14px; color:var(--ink2); margin:8px 0 0; font-size:15px; }
-  details { border-top:1px solid var(--line); padding:14px 0; }
-  details:last-of-type { border-bottom:1px solid var(--line); }
-  summary { cursor:pointer; font-weight:600; font-size:17px; }
-  details p { color:var(--ink2); margin:8px 0 0; }
-  footer { border-top:1px solid var(--line); margin-top:50px; padding-top:18px; color:var(--ink3); font-size:14px; }
-  footer a { color:var(--ink3); }
-  .num { font-family:"JetBrains Mono", monospace; font-variant-numeric:tabular-nums; }
+  :root {
+    --bp: #0E2A47;          /* drafting blue ground */
+    --bp-deep: #0A1F36;
+    --grid: rgba(255,255,255,.07);
+    --line: rgba(255,255,255,.28);
+    --line-soft: rgba(255,255,255,.14);
+    --ink: #F3F6FA;
+    --ink-2: #B9C6D6;
+    --ink-3: #7F93AB;
+    --accent: #FF7A1A;      /* safety orange, used once per screen */
+    --accent-ink: #1A0D02;
+    --ok: #7BE0A8;
+    --paper: #F6F4EE;       /* the "spec sheet" insert */
+    --paper-ink: #1A2230;
+    --paper-ink-2: #5A6572;
+    --paper-line: #D9D4C8;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0; background: var(--bp); color: var(--ink);
+    font: 17px/1.6 "IBM Plex Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    padding-block: 0 72px; padding-inline: 20px;
+    background-image:
+      linear-gradient(var(--grid) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+    background-size: 32px 32px, 32px 32px;
+  }
+  .mono { font-family: "IBM Plex Mono", ui-monospace, Menlo, monospace; }
+  .wrap { max-width: 1040px; margin: 0 auto; }
+  header { display: flex; justify-content: space-between; align-items: baseline; gap: 14px; flex-wrap: wrap; padding-block: 24px; border-bottom: 1px solid var(--line-soft); }
+  .brand { text-decoration: none; color: var(--ink); font-family: Archivo, sans-serif; font-weight: 800; font-stretch: 125%; font-size: 21px; letter-spacing: .01em; }
+  .brand small { font-family: "IBM Plex Mono", monospace; font-weight: 400; font-size: 12px; color: var(--ink-3); margin-left: 10px; letter-spacing: .06em; }
+  .stamp { font-family: "IBM Plex Mono", monospace; font-size: 12px; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-2); border: 1px solid var(--line); padding: 5px 10px; }
+  .stamp b { color: var(--accent); font-weight: 500; }
+
+  /* Hero */
+  .hero { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: 40px; align-items: end; padding-block: 56px 28px; }
+  @media (max-width: 860px) { .hero { grid-template-columns: 1fr; gap: 28px; } }
+  .eyebrow { font-family: "IBM Plex Mono", monospace; font-size: 12.5px; letter-spacing: .12em; text-transform: uppercase; color: var(--ink-3); margin: 0 0 18px; }
+  h1 { font-family: Archivo, sans-serif; font-weight: 800; font-stretch: 125%; font-size: clamp(38px, 6.2vw, 68px); line-height: .98; letter-spacing: -.01em; margin: 0 0 22px; text-wrap: balance; }
+  h1 em { font-style: normal; color: var(--accent); }
+  .lede { font-size: 20px; color: var(--ink-2); max-width: 52ch; margin: 0 0 28px; }
+  .cta-row { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
+  .btn { display: inline-block; text-decoration: none; font-weight: 600; font-size: 16px; padding: 14px 20px; border: 1.5px solid var(--ink); color: var(--ink); background: transparent; }
+  .btn.primary { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+  .btn.primary:hover { filter: brightness(1.06); }
+  .fine { color: var(--ink-3); font-size: 14px; margin: 12px 0 0; }
+  .fine b { color: var(--ink-2); font-weight: 500; }
+
+  /* Blueprint diagram */
+  .draft { border: 1px solid var(--line); padding: 14px; position: relative; background: rgba(10,31,54,.55); }
+  .draft::before { content: "FIG. 1 — MODULE MAP · SCALES FROM 1 TO 40+ MODULES"; position: absolute; top: -9px; left: 14px; background: var(--bp); padding: 0 8px; font: 11px/1 "IBM Plex Mono", monospace; letter-spacing: .12em; color: var(--ink-3); }
+  .draft svg { width: 100%; height: auto; display: block; }
+
+  /* Sections */
+  h2 { font-family: Archivo, sans-serif; font-weight: 700; font-stretch: 112%; font-size: 30px; line-height: 1.1; margin: 0 0 8px; letter-spacing: -.005em; }
+  .sec { padding-block: 44px 8px; border-top: 1px solid var(--line-soft); margin-top: 40px; }
+  .sec-head { display: grid; grid-template-columns: 70px 1fr; gap: 16px; align-items: start; margin-bottom: 22px; }
+  .sec-head .no { font-family: "IBM Plex Mono", monospace; color: var(--ink-3); font-size: 13px; letter-spacing: .1em; padding-top: 10px; }
+  .sec-head p { margin: 6px 0 0; color: var(--ink-2); max-width: 62ch; }
+
+  /* Spec sheet (paper insert) */
+  .sheet { background: var(--paper); color: var(--paper-ink); padding: 26px 26px 10px; box-shadow: 0 20px 50px rgba(0,0,0,.35); }
+  .sheet .title { font-family: "IBM Plex Mono", monospace; font-size: 12px; letter-spacing: .12em; text-transform: uppercase; color: var(--paper-ink-2); border-bottom: 1px solid var(--paper-ink); padding-bottom: 8px; margin-bottom: 4px; display: flex; justify-content: space-between; }
+  .spec { display: grid; grid-template-columns: 210px 1fr; gap: 0 22px; border-bottom: 1px solid var(--paper-line); padding: 14px 0; }
+  .spec:last-child { border-bottom: 0; }
+  @media (max-width: 640px) { .spec { grid-template-columns: 1fr; gap: 4px; } }
+  .spec dt { font-weight: 600; margin: 0; }
+  .spec dd { margin: 0; color: var(--paper-ink-2); }
+  .spec dd code { font-family: "IBM Plex Mono", monospace; font-size: 13.5px; color: var(--paper-ink); background: #ECE8DE; padding: 1px 5px; }
+
+  /* Pillars */
+  .pillars { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 0; border: 1px solid var(--line); }
+  .pillar { padding: 22px; border-right: 1px solid var(--line-soft); }
+  .pillar:last-child { border-right: 0; }
+  @media (max-width: 760px) { .pillar { border-right: 0; border-bottom: 1px solid var(--line-soft); } .pillar:last-child { border-bottom: 0; } }
+  .pillar .k { font-family: "IBM Plex Mono", monospace; font-size: 12px; letter-spacing: .1em; color: var(--ink-3); margin-bottom: 10px; }
+  .pillar h3 { font-family: Archivo, sans-serif; font-weight: 700; font-stretch: 112%; font-size: 21px; margin: 0 0 8px; }
+  .pillar p { margin: 0; color: var(--ink-2); font-size: 15.5px; }
+
+  /* Code block */
+  pre { background: var(--bp-deep); border: 1px solid var(--line-soft); color: var(--ink-2); padding: 18px 20px; overflow-x: auto; font: 13.5px/1.55 "IBM Plex Mono", monospace; margin: 0; }
+  pre .c { color: var(--ink-3); } pre .h { color: var(--ink); } pre .a { color: var(--accent); }
+
+  /* Test pyramid */
+  .two { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr); gap: 28px; align-items: center; }
+  @media (max-width: 760px) { .two { grid-template-columns: 1fr; } }
+  .pyr svg { width: 100%; height: auto; display: block; }
+  ul.plain { margin: 0; padding-left: 18px; color: var(--ink-2); }
+  ul.plain li { margin: 6px 0; }
+
+  /* Launch modules list */
+  .mods { columns: 2; column-gap: 40px; margin: 0; padding-left: 18px; color: var(--ink-2); }
+  @media (max-width: 640px) { .mods { columns: 1; } }
+  .mods li { margin: 6px 0; break-inside: avoid; }
+  .mods b { color: var(--ink); font-weight: 600; }
+
+  /* Order block */
+  .order { border: 1.5px solid var(--ink); padding: 26px; display: grid; grid-template-columns: minmax(0,1fr) auto; gap: 22px; align-items: center; position: relative; margin-top: 8px; }
+  @media (max-width: 700px) { .order { grid-template-columns: 1fr; } }
+  .order::before { content: "PURCHASE ORDER · EARLY BIRD"; position: absolute; top: -9px; left: 18px; background: var(--bp); padding: 0 8px; font: 11px/1 "IBM Plex Mono", monospace; letter-spacing: .12em; color: var(--ink-3); }
+  .price { display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap; }
+  .price .now { font-family: Archivo, sans-serif; font-weight: 800; font-stretch: 125%; font-size: 56px; line-height: 1; }
+  .price .was { font-family: "IBM Plex Mono", monospace; color: var(--ink-3); font-size: 16px; }
+  .price .was s { margin-right: 6px; }
+  .order ul { margin: 12px 0 0; padding-left: 18px; color: var(--ink-2); }
+  .order li { margin: 4px 0; }
+  .tease { font-family: Archivo, sans-serif; font-weight: 700; font-stretch: 112%; font-size: 24px; line-height: 1.2; margin: 0 0 18px; max-width: 30ch; text-wrap: balance; }
+  .note { border-left: 2px solid var(--ok); padding: 8px 14px; color: var(--ink-2); margin: 20px 0 0; font-size: 15px; }
+
+  details { border-top: 1px solid var(--line-soft); padding: 14px 0; }
+  details:last-of-type { border-bottom: 1px solid var(--line-soft); }
+  summary { cursor: pointer; font-weight: 600; }
+  details p { color: var(--ink-2); margin: 8px 0 0; max-width: 70ch; }
+  footer { border-top: 1px solid var(--line-soft); margin-top: 48px; padding-top: 18px; color: var(--ink-3); font-size: 14px; }
+  footer a { color: var(--ink-3); }
+  @media (prefers-reduced-motion: no-preference) { .btn { transition: transform .12s ease; } .btn:active { transform: translateY(1px); } }
+  a:focus-visible, summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
 </style>
 </head>
 <body>
+<div class="wrap">
 <header>
-  <a class="brand" href="./">Launch<span>Kit</span> for Android</a>
-  <span class="pill">PRE-ORDER · V1 SHIPS 1 OCT 2026</span>
+  <a class="brand" href="./">LAUNCHKIT <small>FOR ANDROID</small></a>
+  <span class="stamp">Pre-order · <b>v1 ships 01 Oct 2026</b> · then updated for life</span>
 </header>
 
-<main>
-  <h1>Ship your Android app in days, not months.</h1>
-  <p class="sub">A Jetpack Compose launch kit with the boring, must-have parts already done: Play Billing subscriptions and a paywall, onboarding, settings, sign-in, analytics and crash hooks, in-app review prompt, privacy and Data-safety generators, and CI. Start from a working app, not a blank project.</p>
-  <div class="row">
-    <a class="btn" id="buy" href="mailto:hello@appreviewreply.app?subject=LaunchKit%20pre-order%20(founder%20price)&body=I%20want%20to%20pre-order%20LaunchKit%20for%20Android%20at%20%2479.%0AMy%20Play%20developer%20name%3A%20">Pre-order — $79 founder price</a>
-    <a class="btn ghost" href="#inside">See what's inside</a>
+<section class="hero">
+  <div>
+    <p class="eyebrow">Production codebase · Jetpack Compose · Kotlin</p>
+    <h1>The last time you'll <em>think</em> about architecture.</h1>
+    <p class="lede">A production Android codebase built exactly the way Google recommends — and kept that way by lint rules, a code of conduct, an AI-agent guideline, and a test suite that grows with the app. Start at one module. Grow to forty without a rewrite.</p>
+    <div class="cta-row">
+      <a class="btn primary" id="buy" href="#order">Pre-order · $79 early bird</a>
+      <a class="btn" href="#spec">Read the spec sheet</a>
+    </div>
+    <p class="fine"><b>Regular price $149.</b> Early bird for the first 50 orders. Version 1 ships 1 October 2026; full refund if it doesn't.</p>
   </div>
-  <p class="fine">First 50 at $79, then $149. Version 1 ships 1 October 2026, then updates roll out regularly. Full refund if v1 doesn't ship by then. Pay once, use in unlimited apps, lifetime updates.</p>
 
-  <section class="shots" aria-label="Screens included in the kit">
-    <img src="img/screens.png" alt="Three phone screens from the kit: a subscription paywall with yearly and monthly plans and a 7-day trial, an onboarding step, and a settings screen with a Pro subscription card, theme, notifications and analytics toggles" width="1350" height="900">
-  </section>
-  <p class="caption">Paywall · Onboarding · Settings — every screen is real Compose code you keep and restyle.</p>
+  <figure class="draft" aria-label="Module map of the codebase">
+    <svg viewBox="0 0 520 400" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="figt">
+      <title id="figt">Module map: app depends on feature modules, feature modules depend on core modules, all configured by build-logic convention plugins</title>
+      <defs>
+        <marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#B9C6D6"/></marker>
+      </defs>
+      <!-- layer bands -->
+      <g font-family="IBM Plex Mono, monospace" font-size="10" fill="#7F93AB" letter-spacing="1.5">
+        <text x="14" y="34">APP</text>
+        <text x="14" y="128">FEATURE</text>
+        <text x="14" y="244">CORE</text>
+        <text x="14" y="356">BUILD-LOGIC</text>
+      </g>
+      <g stroke="#FFFFFF" stroke-opacity=".16" stroke-dasharray="3 5" fill="none">
+        <line x1="14" y1="46" x2="506" y2="46"/><line x1="14" y1="140" x2="506" y2="140"/><line x1="14" y1="256" x2="506" y2="256"/>
+      </g>
+      <!-- app -->
+      <g fill="none" stroke="#F3F6FA" stroke-width="1.4">
+        <rect x="200" y="14" width="120" height="30" rx="2"/>
+      </g>
+      <text x="260" y="34" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="12" fill="#F3F6FA">:app</text>
+      <!-- features -->
+      <g fill="none" stroke="#F3F6FA" stroke-width="1.2">
+        <rect x="52" y="90" width="118" height="46" rx="2"/><rect x="200" y="90" width="120" height="46" rx="2"/><rect x="350" y="90" width="118" height="46" rx="2"/>
+      </g>
+      <g font-family="IBM Plex Mono, monospace" font-size="11" fill="#F3F6FA" text-anchor="middle">
+        <text x="111" y="109">:feature:onboarding</text><text x="111" y="125" fill="#7F93AB" font-size="9.5">api · impl</text>
+        <text x="260" y="109">:feature:paywall</text><text x="260" y="125" fill="#7F93AB" font-size="9.5">api · impl</text>
+        <text x="409" y="109">:feature:settings</text><text x="409" y="125" fill="#7F93AB" font-size="9.5">api · impl</text>
+      </g>
+      <!-- core -->
+      <g fill="none" stroke="#F3F6FA" stroke-width="1.2">
+        <rect x="30" y="196" width="84" height="40" rx="2"/><rect x="124" y="196" width="84" height="40" rx="2"/><rect x="218" y="196" width="84" height="40" rx="2"/><rect x="312" y="196" width="84" height="40" rx="2"/><rect x="406" y="196" width="84" height="40" rx="2"/>
+      </g>
+      <g font-family="IBM Plex Mono, monospace" font-size="10.5" fill="#F3F6FA" text-anchor="middle">
+        <text x="72" y="220">:core:data</text><text x="166" y="220">:core:domain</text><text x="260" y="220">:core:billing</text><text x="354" y="220">:core:designsystem</text><text x="448" y="220">:core:testing</text>
+      </g>
+      <!-- build-logic -->
+      <g fill="none" stroke="#FF7A1A" stroke-width="1.4">
+        <rect x="120" y="306" width="280" height="34" rx="2"/>
+      </g>
+      <text x="260" y="328" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="11.5" fill="#FF7A1A">build-logic · convention plugins · lint · agents.md</text>
+      <!-- arrows -->
+      <g stroke="#B9C6D6" stroke-width="1.1" fill="none" marker-end="url(#ar)">
+        <path d="M232,44 L120,88"/><path d="M260,44 L260,88"/><path d="M288,44 L400,88"/>
+        <path d="M100,136 L76,194"/><path d="M122,136 L160,194"/>
+        <path d="M250,136 L172,194"/><path d="M260,136 L260,194"/><path d="M270,136 L350,194"/>
+        <path d="M400,136 L360,194"/><path d="M418,136 L440,194"/>
+      </g>
+      <g stroke="#FF7A1A" stroke-opacity=".55" stroke-width="1" stroke-dasharray="2 4" fill="none">
+        <path d="M260,304 L260,240"/><path d="M180,304 L166,240"/><path d="M340,304 L354,240"/>
+      </g>
+      <!-- annotations -->
+      <g font-family="IBM Plex Mono, monospace" font-size="9.5" fill="#7F93AB">
+        <text x="330" y="24">UDF · single activity</text>
+        <text x="14" y="176">api/impl split keeps builds fast</text>
+        <text x="380" y="176" text-anchor="end"></text>
+        <text x="14" y="296">every module gets the same rules</text>
+        <text x="506" y="388" text-anchor="end">scale: 1 → 40+ modules, no rewrite</text>
+      </g>
+    </svg>
+  </figure>
+</section>
 
-  <h2 id="inside">What's inside</h2>
-  <div class="grid">
-    <div class="card"><h3>Subscriptions that just work</h3><p>Play Billing Library 9: products, base plans, offers, trials, restore, acknowledgement, entitlement state in one <code>SubscriptionRepository</code>. A designed paywall screen you can theme in minutes.</p></div>
-    <div class="card"><h3>Onboarding + first-run</h3><p>A 3-step onboarding flow with persistence, a "what's new" sheet, and a notification-permission request done the right way.</p></div>
-    <div class="card"><h3>Sign-in (optional)</h3><p>Google sign-in via Credential Manager and email magic-link, behind one interface — or leave it out; the kit works without accounts.</p></div>
-    <div class="card"><h3>Settings, theme, about</h3><p>Material 3 settings screen with dark theme, notifications, analytics opt-out, rate-the-app, privacy links, version row.</p></div>
-    <div class="card"><h3>Analytics, crashes, reviews</h3><p>Firebase Analytics + Crashlytics wired behind an interface (swap for Posthog or nothing), in-app review prompt with sensible timing.</p></div>
-    <div class="card"><h3>Store compliance kit</h3><p>Generators for your privacy policy and the Play Data safety form from a checklist, plus the launch checklist we use for our own apps.</p></div>
-    <div class="card"><h3>Architecture you'd build yourself, eventually</h3><p>Single-module to start, convention plugins ready when you grow. Version catalog, Compose BOM, Hilt optional, Room + DataStore samples.</p></div>
-    <div class="card"><h3>CI that ships</h3><p>GitHub Actions: build, unit tests, signed release bundle. Optional deploy to an internal test track.</p></div>
+<section class="sec" id="pillars">
+  <div class="sec-head"><div class="no mono">01</div><div><h2>Four things a codebase needs to stay world-class after you stop looking at it.</h2><p>Most starter kits give you screens. This one gives you the discipline — and the automation that keeps it, whether the next commit comes from you, a teammate, or an AI agent.</p></div></div>
+  <div class="pillars">
+    <div class="pillar"><div class="k">01 · ARCHITECTURE</div><h3>Google's recommended architecture, all the way through</h3><p>Unidirectional data flow, UI → domain → data layers, api/impl feature split, convention plugins, version catalog. The structure Google uses in its own reference app — scoped so a one-person app can start small and never rewrite.</p></div>
+    <div class="pillar"><div class="k">02 · GUARDRAILS</div><h3>Lint rules + a code of conduct for the codebase</h3><p>Custom lint checks that fail the build when a layer is crossed, a dependency is misplaced, or a naming rule breaks. A short written code of conduct explains the why, so reviews argue less.</p></div>
+    <div class="pillar"><div class="k">03 · AGENTS</div><h3>An AI-agent guideline that any model can follow</h3><p><code class="mono">AGENTS.md</code> + per-module rules: where things go, how to add a feature, what to test, what never to touch. Claude, Gemini, Copilot or Cursor extend the app without eroding the architecture — no human babysitting.</p></div>
+    <div class="pillar"><div class="k">04 · TESTS</div><h3>Tests at every layer, and guidance for adding yours</h3><p>Unit tests for domain and data, ViewModel tests with Turbine, Compose UI tests, screenshot tests, a fake-first <code class="mono">:core:testing</code> module, and a testing guide that says exactly what to test as the app grows.</p></div>
   </div>
-  <div class="stack"><span>Kotlin 2.x</span><span>Jetpack Compose</span><span>Material 3</span><span>Play Billing 9</span><span>Credential Manager</span><span>WorkManager</span><span>DataStore</span><span>Room</span><span>Firebase (optional)</span><span>GitHub Actions</span></div>
+</section>
 
-  <h2>Pricing</h2>
-  <div class="price">
+<section class="sec" id="spec">
+  <div class="sec-head"><div class="no mono">02</div><div><h2>Spec sheet</h2><p>What is in version 1, precisely. Everything listed ships on 1 October 2026.</p></div></div>
+  <div class="sheet">
+    <div class="title"><span>LaunchKit for Android — v1.0 specification</span><span>Rev. A · 2026-09</span></div>
+    <dl>
+      <div class="spec"><dt>Architecture</dt><dd>Google recommended app architecture: UI layer (Compose, state holders), domain layer (use cases), data layer (repositories, Room, DataStore, network). Unidirectional data flow, single-activity navigation. Modularized as <code>:app</code>, <code>:feature:*:api/impl</code>, <code>:core:*</code>, <code>build-logic</code> convention plugins. Starts as one module if you want; the module map is ready when you need it.</dd></div>
+      <div class="spec"><dt>Guardrails</dt><dd>Custom Android Lint rules (layer boundaries, module dependencies, naming), <code>dependency-guard</code> baselines, Detekt/ktlint config, a written CODE_OF_CONDUCT for the codebase, PR template and checklist.</dd></div>
+      <div class="spec"><dt>AI-agent guideline</dt><dd><code>AGENTS.md</code> at the root and in each module: conventions, "how to add a feature" recipe, test requirements, forbidden changes, commands to run. Compatible with Claude Code, Gemini CLI, Cursor, Copilot.</dd></div>
+      <div class="spec"><dt>Tests</dt><dd>JUnit + Turbine + Truth; Compose UI tests; Roborazzi screenshot tests; <code>:core:testing</code> with fakes and test rules; CI runs all on every PR. A TESTING.md guide: what to test per layer, how much, and when.</dd></div>
+      <div class="spec"><dt>Launch modules</dt><dd>Play Billing 9 subscriptions with paywall screen and entitlement state; onboarding flow; settings (theme, notifications, analytics opt-out, about); optional sign-in (Credential Manager); analytics + crash reporting behind interfaces; in-app review prompt; notification permission flow.</dd></div>
+      <div class="spec"><dt>Store compliance</dt><dd>Privacy-policy generator, Play Data-safety form checklist, release checklist, adaptive icon + feature-graphic templates.</dd></div>
+      <div class="spec"><dt>CI / release</dt><dd>GitHub Actions: build, lint, unit + screenshot tests, signed release bundle; optional upload to an internal test track. Baseline profile generation.</dd></div>
+      <div class="spec"><dt>Stack</dt><dd>Kotlin 2.x, Jetpack Compose + Material 3, Hilt (optional), Room, DataStore, WorkManager, Coil, Play Billing 9, Firebase (optional, replaceable).</dd></div>
+      <div class="spec"><dt>Delivery</dt><dd>Private GitHub template repository + docs site. Lifetime updates: new versions track Kotlin, Compose, Play Billing and Play policy changes.</dd></div>
+    </dl>
+  </div>
+</section>
+
+<section class="sec" id="agents">
+  <div class="sec-head"><div class="no mono">03</div><div><h2>Written for humans and agents.</h2><p>The same document that onboards a new developer onboards an AI. An excerpt from the root guideline:</p></div></div>
+<pre><span class="c"># AGENTS.md — how to work in this codebase</span>
+<span class="h">## Adding a feature</span>
+1. Create <span class="a">:feature:&lt;name&gt;:api</span> (navigation key + public contracts) and <span class="a">:feature:&lt;name&gt;:impl</span>.
+2. UI reads state from one ViewModel; state is immutable; events flow up.
+3. Data access only through a repository in <span class="a">:core:data</span>. Never call a DAO or API from UI.
+4. Add tests: use case (unit), ViewModel (Turbine), screen (Compose + screenshot).
+5. Run <span class="a">./gradlew check</span>. Lint fails the build on layer violations — fix, don't suppress.
+<span class="h">## Never</span>
+- Add a dependency without the version catalog.  - Put business logic in a Composable.
+- Skip the api/impl split "just for now".      - Suppress a lint rule without a comment + owner.</pre>
+</section>
+
+<section class="sec" id="tests">
+  <div class="sec-head"><div class="no mono">04</div><div><h2>Tested like a product, not a demo.</h2><p>The suite ships with the kit and is designed to be extended: each layer has a pattern, a fake, and an example to copy.</p></div></div>
+  <div class="two">
+    <div class="pyr">
+      <svg viewBox="0 0 420 260" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Test pyramid: many unit tests at the base, ViewModel and integration tests in the middle, Compose UI and screenshot tests at the top">
+        <g fill="none" stroke="#F3F6FA" stroke-width="1.3">
+          <polygon points="210,20 300,100 120,100"/>
+          <polygon points="120,100 300,100 350,170 70,170"/>
+          <polygon points="70,170 350,170 400,240 20,240"/>
+        </g>
+        <g font-family="IBM Plex Mono, monospace" font-size="11" fill="#F3F6FA" text-anchor="middle">
+          <text x="210" y="80">UI · screenshot</text>
+          <text x="210" y="142">ViewModel · integration</text>
+          <text x="210" y="212">unit · domain · data</text>
+        </g>
+        <g font-family="IBM Plex Mono, monospace" font-size="9.5" fill="#7F93AB">
+          <text x="310" y="60">Compose test rule</text><text x="310" y="72">Roborazzi</text>
+          <text x="356" y="130">Turbine · fakes</text><text x="356" y="142">Hilt test runner</text>
+          <text x="20" y="262">JUnit5 · Truth · kotlinx-coroutines-test</text>
+        </g>
+        <g stroke="#FF7A1A" stroke-width="1" stroke-dasharray="2 4" fill="none"><line x1="20" y1="248" x2="400" y2="248"/></g>
+        <text x="400" y="30" text-anchor="end" font-family="IBM Plex Mono, monospace" font-size="9.5" fill="#FF7A1A">CI gate: all green or no merge</text>
+      </svg>
+    </div>
+    <ul class="plain">
+      <li><b>Domain and data:</b> pure unit tests with fakes from <code class="mono">:core:testing</code> — no Android runtime needed.</li>
+      <li><b>ViewModels:</b> state and event tests with Turbine; every screen's state machine is covered.</li>
+      <li><b>Screens:</b> Compose semantics tests plus screenshot tests, so a design regression fails CI before a human notices.</li>
+      <li><b>Guidance:</b> TESTING.md says what to test at each layer, how much is enough, and how to add coverage to an existing codebase incrementally.</li>
+    </ul>
+  </div>
+</section>
+
+<section class="sec" id="modules">
+  <div class="sec-head"><div class="no mono">05</div><div><h2>Launch modules, ready on day one.</h2><p>The parts every paid app needs and every solo developer rebuilds.</p></div></div>
+  <ul class="mods">
+    <li><b>Subscriptions</b> — Play Billing 9: products, base plans, offers, trials, restore, entitlements; a designed paywall.</li>
+    <li><b>Onboarding</b> — 3-step flow with persistence and a "what's new" sheet.</li>
+    <li><b>Settings</b> — theme, notifications, analytics opt-out, rate, privacy, version.</li>
+    <li><b>Sign-in (optional)</b> — Credential Manager, behind one interface.</li>
+    <li><b>Analytics + crashes</b> — behind interfaces; swap or delete.</li>
+    <li><b>Review prompt</b> — in-app review with sensible timing.</li>
+    <li><b>Compliance</b> — privacy policy + Data-safety generators, release checklist.</li>
+    <li><b>CI</b> — GitHub Actions to a signed bundle.</li>
+  </ul>
+</section>
+
+<section class="sec" id="order">
+  <div class="sec-head"><div class="no mono">06</div><div><h2>Order</h2><p class="tease">Your next app should start where your last one ended: at version 1.0 of the architecture.</p></div></div>
+  <div class="order">
     <div>
-      <div class="amt">$79 <s>$149</s></div>
-      <div class="fine">founder price · first 50 buyers · <span class="num" id="left">50</span> left</div>
+      <div class="price"><span class="now">$79</span><span class="was mono"><s>$149</s> regular price · early bird, first 50 orders</span></div>
       <ul>
-        <li>Private GitHub repo access + docs site</li>
-        <li>Unlimited apps, personal or commercial</li>
-        <li>Version 1 ships 1 October 2026 — full refund if it doesn't</li>
-        <li>Regular updates after that (new screens, Kotlin/Compose/Billing versions) — included for life</li>
+        <li>Private GitHub template repo + docs site, delivered 1 October 2026</li>
+        <li>Unlimited apps — yours or clients'</li>
+        <li>Lifetime updates as Kotlin, Compose, Billing and Play policies move</li>
+        <li>Full refund if v1 does not ship on the date</li>
       </ul>
     </div>
-    <a class="btn" href="mailto:hello@appreviewreply.app?subject=LaunchKit%20pre-order%20(founder%20price)&body=I%20want%20to%20pre-order%20LaunchKit%20for%20Android%20at%20%2479.%0AMy%20Play%20developer%20name%3A%20">Pre-order for $79</a>
+    <a class="btn primary" id="buy2" href="#">Pre-order for $79</a>
   </div>
-  <p class="honest">Honest note: the kit is in development. You are pre-ordering what's listed above, built from the architecture behind five apps already on Google Play. Version 1 ships on 1 October 2026 with everything listed above; later versions add more screens and keep up with library releases, at no extra cost. If v1 doesn't ship on the date, every pre-order is refunded in full, no questions.</p>
+  <p class="note">Pre-order means exactly that: the kit is being built from the architecture behind five apps already on Google Play, and version 1 ships on 1 October 2026 with everything in the spec sheet. Miss the date, and every order is refunded in full.</p>
+</section>
 
-  <h2>Questions</h2>
-  <details><summary>Why not Google's "Now in Android" sample? It's free.</summary><p>It's an excellent architecture showcase and we learned from it. It has no billing, no paywall, no onboarding, no store-compliance pieces — the parts that take a solo developer the longest and that every paid app needs.</p></details>
-  <details><summary>Does it lock me into Firebase or any service?</summary><p>No. Analytics, crash reporting and sign-in sit behind interfaces with a no-op implementation. Delete what you don't want.</p></details>
-  <details><summary>What do I actually receive?</summary><p>On 1 October: an invitation to a private GitHub repository (template you can "Use this template" from) and a docs site with step-by-step setup for Play Console products. After that: every update, as libraries and Play policies move.</p></details>
-  <details><summary>Can I use it for client work?</summary><p>Yes — unlimited apps, yours or clients'. You may not resell the kit itself.</p></details>
-  <details><summary>Kotlin Multiplatform or Flutter?</summary><p>Native Android only, on purpose. KMP is on the list if buyers ask for it.</p></details>
-  <details><summary>How is payment handled?</summary><p>Pre-orders are collected through Gumroad (VAT included where applicable). Until the checkout link is live, the button sends an email and we'll reply with the payment link the same day.</p></details>
-</main>
+<section class="sec">
+  <div class="sec-head"><div class="no mono">07</div><div><h2>Questions</h2></div></div>
+  <details><summary>Isn't this just Google's "Now in Android" sample?</summary><p>We follow the same architecture — deliberately. Now in Android is a reference app; it has no billing, paywall, onboarding, compliance kit, agent guideline or growth path from one module to many. LaunchKit is the version you can ship a business on.</p></details>
+  <details><summary>Can I start small? I have one screen and no team.</summary><p>Yes. Version 1 includes a single-module starting point that uses the same rules. When the app grows, the module map, convention plugins and lint rules are already there — you move code, you don't rewrite it.</p></details>
+  <details><summary>Which AI tools does the agent guideline work with?</summary><p>Any that read repository instructions: Claude Code, Gemini CLI, Cursor, GitHub Copilot, Codex. The guideline is plain Markdown, per module, with the commands and tests each change must pass.</p></details>
+  <details><summary>Does it lock me into Firebase or any service?</summary><p>No. Analytics, crash reporting and sign-in sit behind interfaces with no-op implementations. Delete what you don't use.</p></details>
+  <details><summary>What exactly happens when I click pre-order?</summary><p>You pay $79 through Gumroad (VAT handled) and receive a receipt. On 1 October you get access to the private repository and the docs. If we miss the date, you're refunded in full automatically.</p></details>
+  <details><summary>License?</summary><p>Use it in unlimited apps, personal or commercial, including client work. You may not resell or redistribute the kit itself.</p></details>
+</section>
 
 <footer>
   <p>LaunchKit for Android is an independent product and is not affiliated with Google. Android, Google Play and Jetpack Compose are trademarks of Google LLC.</p>
   <p><a href="mailto:hello@appreviewreply.app">hello@appreviewreply.app</a></p>
 </footer>
+</div>
+
+<script>
+  // Checkout wiring: set CHECKOUT_URL to the Gumroad product link when it exists.
+  // Until then the buttons open an email draft, which counts as a reservation.
+  var CHECKOUT_URL = "";
+  var MAILTO = "mailto:hello@appreviewreply.app?subject=LaunchKit%20early-bird%20pre-order&body=I%20want%20to%20pre-order%20LaunchKit%20for%20Android%20at%20%2479.%0AMy%20Play%20developer%20name%3A%20";
+  ["buy", "buy2"].forEach(function (id) {
+    var a = document.getElementById(id);
+    if (!a) return;
+    if (CHECKOUT_URL) { a.href = CHECKOUT_URL; a.target = "_blank"; a.rel = "noopener"; }
+    else if (id === "buy2") { a.href = MAILTO; }
+  });
+</script>
 </body>
 </html>
