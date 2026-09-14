@@ -1,0 +1,81 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@500;700&family=Source+Sans+3:wght@400;600&display=swap">
+<style>
+  html,body{margin:0;background:transparent}
+  body{display:flex;gap:40px;padding:20px;font-family:"Source Sans 3",-apple-system,sans-serif}
+  .phone{width:390px;height:844px;border-radius:44px;background:#0F1218;padding:12px;box-shadow:0 30px 60px rgba(0,0,0,.35);position:relative;flex:none}
+  .screen{width:100%;height:100%;border-radius:34px;overflow:hidden;background:#FAFAF7;color:#14181F;position:relative;display:flex;flex-direction:column}
+  .notch{position:absolute;top:12px;left:50%;transform:translateX(-50%);width:110px;height:28px;background:#0F1218;border-radius:14px;z-index:3}
+  .status{height:54px;display:flex;justify-content:space-between;align-items:flex-end;padding:0 24px 6px;font-size:14px;font-weight:600}
+  .body{padding:22px 24px;display:flex;flex-direction:column;flex:1}
+  h1{font-family:Sora,sans-serif;font-size:30px;line-height:1.1;margin:0 0 10px;letter-spacing:-.3px}
+  h2{font-family:Sora,sans-serif;font-size:22px;margin:0 0 6px}
+  p{margin:0;color:#5B6270;font-size:16px;line-height:1.45}
+  .tick{display:flex;align-items:center;gap:12px;margin:12px 0;font-size:16px}
+  .tick i{width:22px;height:22px;border-radius:50%;background:#3DDC84;display:inline-flex;align-items:center;justify-content:center;color:#0F1218;font-style:normal;font-weight:700;font-size:14px;flex:none}
+  .plan{border:2px solid #E4E5E9;border-radius:16px;padding:14px 16px;margin-top:10px;display:flex;justify-content:space-between;align-items:center}
+  .plan.sel{border-color:#7F52FF;background:#F3EEFF}
+  .plan b{display:block;font-size:17px}.plan small{color:#5B6270}
+  .plan .price{font-family:Sora,sans-serif;font-weight:700;font-size:20px}
+  .badge{position:absolute;right:16px;top:-12px;background:#7F52FF;color:#fff;font-size:12px;font-weight:700;padding:3px 10px;border-radius:10px}
+  .cta{margin-top:auto;background:#7F52FF;color:#fff;border-radius:14px;padding:16px;text-align:center;font-weight:700;font-size:17px}
+  .fine{text-align:center;color:#8A909B;font-size:12px;margin-top:10px}
+  .dots{display:flex;gap:6px;justify-content:center;margin:14px 0 6px}.dots i{width:8px;height:8px;border-radius:50%;background:#D9DBE0}.dots i.on{background:#7F52FF;width:22px;border-radius:4px}
+  .illus{height:290px;border-radius:24px;background:linear-gradient(160deg,#7F52FF,#3DDC84);margin:6px 0 22px;position:relative;overflow:hidden}
+  .illus:after{content:"";position:absolute;inset:40px 40px 0 40px;background:#FAFAF7;border-radius:18px 18px 0 0;opacity:.9}
+  .row{display:flex;justify-content:space-between;align-items:center;padding:14px 0;border-bottom:1px solid #ECEDF0;font-size:16px}
+  .row small{display:block;color:#8A909B;font-size:13px}
+  .sw{width:46px;height:26px;border-radius:13px;background:#3DDC84;position:relative}.sw:after{content:"";position:absolute;right:3px;top:3px;width:20px;height:20px;border-radius:50%;background:#fff}
+  .sw.off{background:#D9DBE0}.sw.off:after{right:auto;left:3px}
+  .sec{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#8A909B;margin:18px 0 4px;font-weight:600}
+  .pro{background:#14181F;color:#fff;border-radius:16px;padding:14px 16px;display:flex;justify-content:space-between;align-items:center;margin-top:6px}
+  .pro b{font-family:Sora,sans-serif}
+</style></head><body>
+
+<div class="phone"><div class="notch"></div><div class="screen">
+  <div class="status"><span>9:41</span><span>●●● ▲ ▮</span></div>
+  <div class="body">
+    <h1>Unlock everything</h1>
+    <p>Try 7 days free, then pick a plan. Cancel anytime in Google Play.</p>
+    <div style="margin-top:10px">
+      <div class="tick"><i>✓</i>Unlimited projects</div>
+      <div class="tick"><i>✓</i>Sync across devices</div>
+      <div class="tick"><i>✓</i>Priority support</div>
+    </div>
+    <div class="plan sel" style="position:relative"><span class="badge">SAVE 45%</span><div><b>Yearly</b><small>$39.99 / year · 7-day trial</small></div><div class="price">$3.33/mo</div></div>
+    <div class="plan"><div><b>Monthly</b><small>Cancel anytime</small></div><div class="price">$5.99</div></div>
+    <div class="cta">Start free trial</div>
+    <div class="fine">Restore purchases · Terms · Privacy</div>
+  </div>
+</div></div>
+
+<div class="phone"><div class="notch"></div><div class="screen">
+  <div class="status"><span>9:41</span><span>●●● ▲ ▮</span></div>
+  <div class="body">
+    <div class="illus"></div>
+    <h2>Set up in under a minute</h2>
+    <p>Pick what you care about and we'll tailor the app. You can change this later in Settings.</p>
+    <div class="dots"><i></i><i class="on"></i><i></i></div>
+    <div class="cta" style="margin-top:14px">Continue</div>
+    <div class="fine">Step 2 of 3</div>
+  </div>
+</div></div>
+
+<div class="phone"><div class="notch"></div><div class="screen">
+  <div class="status"><span>9:41</span><span>●●● ▲ ▮</span></div>
+  <div class="body">
+    <h2>Settings</h2>
+    <div class="pro"><div><b>Pro · Yearly</b><br><small style="opacity:.75">Renews 12 Sep 2027</small></div><span>Manage ›</span></div>
+    <div class="sec">General</div>
+    <div class="row"><div>Dark theme<small>Follow system</small></div><div class="sw"></div></div>
+    <div class="row"><div>Notifications<small>Daily reminder at 9:00</small></div><div class="sw"></div></div>
+    <div class="row"><div>Analytics<small>Anonymous usage data</small></div><div class="sw off"></div></div>
+    <div class="sec">About</div>
+    <div class="row"><div>Rate the app</div><span>›</span></div>
+    <div class="row"><div>Privacy policy</div><span>›</span></div>
+    <div class="row"><div>Version 1.0.0 (12)</div><span></span></div>
+  </div>
+</div></div>
+
+</body></html>

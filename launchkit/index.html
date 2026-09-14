@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LaunchKit for Android</title>
+<meta name="description" content="A Jetpack Compose launch kit with Play Billing, paywall, onboarding, settings, analytics and CI wired up. Ship your Android app in days, not months. Pre-order at the founder price.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700&family=Source+Sans+3:wght@400;600&family=JetBrains+Mono:wght@500&display=swap">
+<style>
+  :root { --paper:#FAFAF7; --ink:#14181F; --ink2:#5B6270; --ink3:#8A909B; --line:#E4E5E9; --accent:#7F52FF; --accent-2:#3DDC84; --tint:#F3EEFF; --code:#0F1218; }
+  @media (prefers-color-scheme: dark) { :root { --paper:#0F1218; --ink:#F2F3F5; --ink2:#B4B9C3; --ink3:#7C8391; --line:#262B35; --accent:#9B7BFF; --tint:#1E1A2E; --code:#05070A; } }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--paper); color:var(--ink); font:17px/1.55 "Source Sans 3", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; padding-block:0 60px; padding-inline:20px; }
+  header, main, footer { max-width: 980px; margin: 0 auto; }
+  header { display:flex; justify-content:space-between; align-items:center; padding-block:22px; gap:12px; flex-wrap:wrap; }
+  .brand { font-family:Sora, sans-serif; font-weight:700; font-size:20px; text-decoration:none; color:var(--ink); letter-spacing:-.2px; }
+  .brand span { color:var(--accent); }
+  .pill { font-family:"JetBrains Mono", monospace; font-size:12px; color:var(--accent); background:var(--tint); padding:4px 10px; border-radius:999px; }
+  h1 { font-family:Sora, sans-serif; font-size:clamp(34px, 5.6vw, 56px); line-height:1.05; letter-spacing:-.8px; margin:36px 0 16px; max-width:18ch; text-wrap:balance; }
+  .sub { font-size:21px; color:var(--ink2); max-width:56ch; margin:0 0 26px; }
+  .row { display:flex; gap:14px; flex-wrap:wrap; align-items:center; }
+  .btn { display:inline-block; background:var(--accent); color:#fff; padding:14px 22px; border-radius:12px; font-weight:600; text-decoration:none; font-size:17px; }
+  .btn.ghost { background:transparent; color:var(--ink); border:1.5px solid var(--line); }
+  .fine { color:var(--ink3); font-size:14px; }
+  .shots { margin:44px 0 10px; border-radius:20px; overflow:hidden; background:linear-gradient(135deg, var(--tint), transparent); padding:22px 10px 0; }
+  .shots img { width:100%; display:block; max-width:100%; }
+  .caption { color:var(--ink3); font-size:14px; margin:8px 0 40px; }
+  h2 { font-family:Sora, sans-serif; font-size:28px; letter-spacing:-.3px; margin:44px 0 16px; }
+  .grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(250px, 1fr)); gap:14px; }
+  .card { border:1px solid var(--line); border-radius:14px; padding:16px 18px; }
+  .card h3 { margin:0 0 6px; font-size:17px; font-family:Sora, sans-serif; font-weight:600; }
+  .card p { margin:0; color:var(--ink2); font-size:15.5px; }
+  .card code { font-family:"JetBrains Mono", monospace; font-size:12.5px; color:var(--accent); }
+  .stack { display:flex; flex-wrap:wrap; gap:8px; margin:12px 0 0; }
+  .stack span { font-family:"JetBrains Mono", monospace; font-size:12.5px; border:1px solid var(--line); border-radius:8px; padding:4px 9px; color:var(--ink2); }
+  .price { margin:30px 0; border:2px solid var(--accent); border-radius:18px; padding:26px; display:grid; grid-template-columns: 1fr auto; gap:20px; align-items:center; background:var(--tint); }
+  .price .amt { font-family:Sora, sans-serif; font-size:44px; font-weight:700; line-height:1; }
+  .price .amt s { font-size:22px; color:var(--ink3); font-weight:600; margin-left:10px; }
+  .price ul { margin:12px 0 0; padding-left:18px; color:var(--ink2); }
+  .price li { margin:4px 0; }
+  @media (max-width:640px) { .price { grid-template-columns:1fr; } }
+  .honest { border-left:3px solid var(--accent-2); padding:10px 14px; color:var(--ink2); margin:8px 0 0; font-size:15px; }
+  details { border-top:1px solid var(--line); padding:14px 0; }
+  details:last-of-type { border-bottom:1px solid var(--line); }
+  summary { cursor:pointer; font-weight:600; font-size:17px; }
+  details p { color:var(--ink2); margin:8px 0 0; }
+  footer { border-top:1px solid var(--line); margin-top:50px; padding-top:18px; color:var(--ink3); font-size:14px; }
+  footer a { color:var(--ink3); }
+  .num { font-family:"JetBrains Mono", monospace; font-variant-numeric:tabular-nums; }
+</style>
+</head>
+<body>
+<header>
+  <a class="brand" href="./">Launch<span>Kit</span> for Android</a>
+  <span class="pill">PRE-ORDER · SHIPS 15 OCT 2026</span>
+</header>
+
+<main>
+  <h1>Ship your Android app in days, not months.</h1>
+  <p class="sub">A Jetpack Compose launch kit with the boring, must-have parts already done: Play Billing subscriptions and a paywall, onboarding, settings, sign-in, analytics and crash hooks, in-app review prompt, privacy and Data-safety generators, and CI. Start from a working app, not a blank project.</p>
+  <div class="row">
+    <a class="btn" id="buy" href="mailto:hello@appreviewreply.app?subject=LaunchKit%20pre-order%20(founder%20price)&body=I%20want%20to%20pre-order%20LaunchKit%20for%20Android%20at%20%2479.%0AMy%20Play%20developer%20name%3A%20">Pre-order — $79 founder price</a>
+    <a class="btn ghost" href="#inside">See what's inside</a>
+  </div>
+  <p class="fine">First 50 at $79, then $149. Full refund if it doesn't ship by 15 October 2026. Pay once, use in unlimited apps, lifetime updates.</p>
+
+  <section class="shots" aria-label="Screens included in the kit">
+    <img src="img/screens.png" alt="Three phone screens from the kit: a subscription paywall with yearly and monthly plans and a 7-day trial, an onboarding step, and a settings screen with a Pro subscription card, theme, notifications and analytics toggles" width="1350" height="900">
+  </section>
+  <p class="caption">Paywall · Onboarding · Settings — every screen is real Compose code you keep and restyle.</p>
+
+  <h2 id="inside">What's inside</h2>
+  <div class="grid">
+    <div class="card"><h3>Subscriptions that just work</h3><p>Play Billing Library 9: products, base plans, offers, trials, restore, acknowledgement, entitlement state in one <code>SubscriptionRepository</code>. A designed paywall screen you can theme in minutes.</p></div>
+    <div class="card"><h3>Onboarding + first-run</h3><p>A 3-step onboarding flow with persistence, a "what's new" sheet, and a notification-permission request done the right way.</p></div>
+    <div class="card"><h3>Sign-in (optional)</h3><p>Google sign-in via Credential Manager and email magic-link, behind one interface — or leave it out; the kit works without accounts.</p></div>
+    <div class="card"><h3>Settings, theme, about</h3><p>Material 3 settings screen with dark theme, notifications, analytics opt-out, rate-the-app, privacy links, version row.</p></div>
+    <div class="card"><h3>Analytics, crashes, reviews</h3><p>Firebase Analytics + Crashlytics wired behind an interface (swap for Posthog or nothing), in-app review prompt with sensible timing.</p></div>
+    <div class="card"><h3>Store compliance kit</h3><p>Generators for your privacy policy and the Play Data safety form from a checklist, plus the launch checklist we use for our own apps.</p></div>
+    <div class="card"><h3>Architecture you'd build yourself, eventually</h3><p>Single-module to start, convention plugins ready when you grow. Version catalog, Compose BOM, Hilt optional, Room + DataStore samples.</p></div>
+    <div class="card"><h3>CI that ships</h3><p>GitHub Actions: build, unit tests, signed release bundle. Optional deploy to an internal test track.</p></div>
+  </div>
+  <div class="stack"><span>Kotlin 2.x</span><span>Jetpack Compose</span><span>Material 3</span><span>Play Billing 9</span><span>Credential Manager</span><span>WorkManager</span><span>DataStore</span><span>Room</span><span>Firebase (optional)</span><span>GitHub Actions</span></div>
+
+  <h2>Pricing</h2>
+  <div class="price">
+    <div>
+      <div class="amt">$79 <s>$149</s></div>
+      <div class="fine">founder price · first 50 buyers · <span class="num" id="left">50</span> left</div>
+      <ul>
+        <li>Private GitHub repo access + docs site</li>
+        <li>Unlimited apps, personal or commercial</li>
+        <li>Lifetime updates (Kotlin, Compose, Billing versions)</li>
+        <li>Ships 15 October 2026 — full refund if it doesn't</li>
+      </ul>
+    </div>
+    <a class="btn" href="mailto:hello@appreviewreply.app?subject=LaunchKit%20pre-order%20(founder%20price)&body=I%20want%20to%20pre-order%20LaunchKit%20for%20Android%20at%20%2479.%0AMy%20Play%20developer%20name%3A%20">Pre-order for $79</a>
+  </div>
+  <p class="honest">Honest note: the kit is in development. You are pre-ordering what's listed above, built from the architecture behind five apps already on Google Play. If we don't deliver by the date, every pre-order is refunded in full, no questions.</p>
+
+  <h2>Questions</h2>
+  <details><summary>Why not Google's "Now in Android" sample? It's free.</summary><p>It's an excellent architecture showcase and we learned from it. It has no billing, no paywall, no onboarding, no store-compliance pieces — the parts that take a solo developer the longest and that every paid app needs.</p></details>
+  <details><summary>Does it lock me into Firebase or any service?</summary><p>No. Analytics, crash reporting and sign-in sit behind interfaces with a no-op implementation. Delete what you don't want.</p></details>
+  <details><summary>What do I actually receive?</summary><p>An invitation to a private GitHub repository (template you can "Use this template" from), a docs site with step-by-step setup for Play Console products, and updates as libraries move.</p></details>
+  <details><summary>Can I use it for client work?</summary><p>Yes — unlimited apps, yours or clients'. You may not resell the kit itself.</p></details>
+  <details><summary>Kotlin Multiplatform or Flutter?</summary><p>Native Android only, on purpose. KMP is on the list if buyers ask for it.</p></details>
+  <details><summary>How is payment handled?</summary><p>Pre-orders are collected through Gumroad (VAT included where applicable). Until the checkout link is live, the button sends an email and we'll reply with the payment link the same day.</p></details>
+</main>
+
+<footer>
+  <p>LaunchKit for Android is an independent product and is not affiliated with Google. Android, Google Play and Jetpack Compose are trademarks of Google LLC.</p>
+  <p><a href="mailto:hello@appreviewreply.app">hello@appreviewreply.app</a></p>
+</footer>
+</body>
+</html>
