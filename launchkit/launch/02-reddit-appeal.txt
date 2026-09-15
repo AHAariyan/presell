@@ -1,0 +1,5 @@
+Hi. My account u/Aariyan-AH appears to have been banned automatically. I'm a real person, an Android developer with 9 years in software, and I've used this account only to read and occasionally comment.
+
+What happened today: I made one text post in r/androiddev asking how people keep their app architecture from eroding (no link in the post). It was removed by the automated filter, so I tried to message the r/androiddev moderators to ask for a review. The compose page rejected the message several times, and I retried it a few times in a row. I think that pattern, from a low-karma account, is what triggered the ban.
+
+I wasn't running a bot or trying to spam. I'd like the account reinstated so I can participate normally, and I'll build up history with helpful comments before posting again. Thanks for taking a look.

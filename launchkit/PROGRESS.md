@@ -22,7 +22,7 @@ Page: https://ahaariyan.github.io/presell/launchkit/
 | UTM tracking links, one per channel (`launch/utm-links.txt`) | Done |
 | X product account @android_launch: avatar, header (tagline), bio (tagline) | Done |
 | X thread, benefit-led copy, pinned: https://x.com/android_launch/status/2099907446143959234 | Posted 2026-09-15 23:05 |
-| r/androiddev discussion post (link withheld to a comment) | Auto-removed by Reddit's filter (account 2 months old, 1 karma); modmail approval request sent |
+| r/androiddev discussion post (link withheld to a comment) | Account u/Aariyan-AH BANNED by Reddit's automated systems (confirmed logged-out); modmail refused; appeal submitted 2026-09-15 (launch/02-reddit-appeal.txt). Reddit is out of this launch. |
 | Indie Hackers post | Blocked: new accounts can't post |
 | Indie Hackers product listing | Blocked: "Could not verify your account"; profile @ah_hady not yet completed; retry after profile + email verification, else next week |
 | Launch helper `launch.sh` and per-channel texts in `launch/` | Done |
@@ -34,7 +34,7 @@ Page: https://ahaariyan.github.io/presell/launchkit/
 4. Reply to your own X post 5 within the day: "If you build Android apps, tell me the one lint rule you'd want first. I'll add the best answers to v1."
 5. When the first reservation email arrives: create the Gumroad product (pre-order, $79, release 2026-10-01) and set `CHECKOUT_URL` in `index.html`, then re-post "checkout is open".
 6. Indie Hackers: complete profile (bio in this file's history), verify email, retry the product form once.
-7. Reddit: if the modmail gets no reply by 2026-09-17, post one link-free comment in the weekly self-promo thread instead. Longer term: earn ~50 karma before the next launch.
+7. Reddit: wait for the ban appeal. If reinstated, earn ~50 karma with helpful comments before any post. No further Reddit activity this launch.
 
 ## Daily routine (2 minutes)
 - Inbox: count reservation emails. That is the real number.
@@ -53,7 +53,7 @@ Page: https://ahaariyan.github.io/presell/launchkit/
 - Read the miss honestly: if visitors were near zero, it's a distribution problem (no audience yet), not a product verdict. If visitors came but didn't click, it's the offer or the page.
 
 ## Lessons recorded
-- Reddit and Indie Hackers gate new accounts. Age accounts and earn karma weeks before a launch.
+- Reddit and Indie Hackers gate new accounts. Reddit banned the account outright after one filtered post plus repeated modmail attempts. Age accounts and earn karma weeks before a launch; never retry a rejected action repeatedly.
 - Analytics and tracking links must exist before the first post; the first thread went out without them.
 - One message everywhere: the tagline drove edits to the thread, bio, header, page hero, meta tags and IH tagline. Decide the line first next time.
 - Never claim numbers you can't show (removed "shipped five apps").
