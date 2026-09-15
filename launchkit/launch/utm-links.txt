@@ -1,0 +1,11 @@
+# Tracking links, one per channel. Use these instead of the bare URL.
+x-thread      https://ahaariyan.github.io/presell/launchkit/?utm_source=x&utm_medium=thread&utm_campaign=presell-sep2026
+x-dm          https://ahaariyan.github.io/presell/launchkit/?utm_source=x&utm_medium=dm&utm_campaign=presell-sep2026
+reddit        https://ahaariyan.github.io/presell/launchkit/?utm_source=reddit&utm_medium=post&utm_campaign=presell-sep2026
+indiehackers  https://ahaariyan.github.io/presell/launchkit/?utm_source=indiehackers&utm_medium=post&utm_campaign=presell-sep2026
+kotlin-slack  https://ahaariyan.github.io/presell/launchkit/?utm_source=kotlinslack&utm_medium=chat&utm_campaign=presell-sep2026
+discord       https://ahaariyan.github.io/presell/launchkit/?utm_source=discord&utm_medium=chat&utm_campaign=presell-sep2026
+androidweekly https://ahaariyan.github.io/presell/launchkit/?utm_source=androidweekly&utm_medium=newsletter&utm_campaign=presell-sep2026
+hn            https://ahaariyan.github.io/presell/launchkit/?utm_source=hackernews&utm_medium=post&utm_campaign=presell-sep2026
+producthunt   https://ahaariyan.github.io/presell/launchkit/?utm_source=producthunt&utm_medium=launch&utm_campaign=presell-sep2026
+linkedin-dm   https://ahaariyan.github.io/presell/launchkit/?utm_source=linkedin&utm_medium=dm&utm_campaign=presell-sep2026

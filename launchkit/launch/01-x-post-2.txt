@@ -1,0 +1,4 @@
+It starts from Google's own architecture: the exact module graph of Now in Android.
+:app → :feature:*:api/impl → :core:* → data sources, convention plugins underneath.
+
+Not "inspired by". Same names, same rules. Fig. 1 on the page is drawn from NIA's build files.

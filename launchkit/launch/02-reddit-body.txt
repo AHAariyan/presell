@@ -1,0 +1,16 @@
+Every app I've shipped started on Google's recommended app architecture, laid out exactly like Now in Android: feature modules split into :api/:impl, :core:* underneath, convention plugins in build-logic. Six months later there's a ViewModel calling a DAO "just this once", a Composable doing business logic, and a fourth navigation pattern that an AI agent added in a PR nobody read closely.
+
+What I've landed on so far:
+
+- Custom Android Lint rules that fail the build on cross-layer calls (feature impl → core:data directly, core → feature, anything → app). A red build is the only guardrail that survives a deadline.
+- dependency-guard baselines per module, so a new dependency edge is a reviewed diff, not a surprise.
+- An AGENTS.md at the root and in each module: where things go, how to add a feature, what to test, what never to touch. Claude Code, Gemini CLI, Cursor and Copilot all read it, and it cut the "creative" architecture PRs noticeably.
+- A short written code of conduct for the repo, because "we all know the rules" stops being true at the second hire.
+
+Questions for people running modularized apps in production:
+
+1. Which lint rules or Gradle checks have actually caught real violations for you, not just theoretical ones?
+2. Has anyone found a good way to make agent-generated PRs respect module boundaries beyond a guideline file?
+3. For a solo dev or a small team, where's the line between "enough guardrails" and "fighting the build all day"?
+
+Disclosure: I'm packaging this setup into a paid starter kit. Not linking it here; I'll leave the link in a comment for anyone who wants it. The post is about the problem, and I'd rather hear how you solve it.

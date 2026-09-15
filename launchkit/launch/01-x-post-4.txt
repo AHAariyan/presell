@@ -1,0 +1,2 @@
+And the boring parts every paid app rebuilds:
+Play Billing 9 + a real paywall, onboarding, settings, optional sign-in, analytics/crash hooks behind interfaces, in-app review, privacy + Data-safety generators, CI to a signed bundle.

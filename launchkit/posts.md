@@ -47,7 +47,7 @@ Hook alternatives for post 1 (pick the one that sounds like you):
 Title: I'm pre-selling a Compose codebase that's literally Now in Android's module graph + lint that fails on layer violations + an AGENTS.md. Would you pay $79?
 
 Body:
-I've shipped five apps and rebuilt the same foundation five times: billing, paywall, onboarding, settings, CI — and every time the architecture drifted within months, especially once AI tools started making commits.
+Every app I've shipped started with the same rebuilt foundation: billing, paywall, onboarding, settings, CI — and every time the architecture drifted within months, especially once AI tools started making commits.
 
 So I'm building the version I wanted, and selling it before it's done (v1 on 1 Oct, full refund if I miss):
 

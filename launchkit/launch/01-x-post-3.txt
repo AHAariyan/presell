@@ -1,0 +1,5 @@
+Then it adds what Google's sample doesn't ship:
+• lint that FAILS THE BUILD when a layer is crossed
+• a code of conduct for the codebase
+• AGENTS.md so Claude/Gemini/Cursor extend the app without eroding it
+• tests at every layer + a guide that says how much is enough

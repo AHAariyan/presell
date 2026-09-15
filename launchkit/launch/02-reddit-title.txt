@@ -1,0 +1,1 @@
+How do you keep Google's recommended app architecture from eroding over time, especially now that AI agents are making commits?

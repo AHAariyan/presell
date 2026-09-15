@@ -1,0 +1,222 @@
+<!doctype html><html><head><meta charset="utf-8"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@112,700;125,800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap"><style>
+  :root {
+    --bp: #0E2A47;          /* drafting blue ground */
+    --bp-deep: #0A1F36;
+    --grid: rgba(255,255,255,.07);
+    --line: rgba(255,255,255,.28);
+    --line-soft: rgba(255,255,255,.14);
+    --ink: #F3F6FA;
+    --ink-2: #B9C6D6;
+    --ink-3: #7F93AB;
+    --accent: #FF7A1A;      /* safety orange, used once per screen */
+    --accent-ink: #1A0D02;
+    --ok: #7BE0A8;
+    --paper: #F6F4EE;       /* the "spec sheet" insert */
+    --paper-ink: #1A2230;
+    --paper-ink-2: #5A6572;
+    --paper-line: #D9D4C8;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0; background: var(--bp); color: var(--ink);
+    font: 17px/1.6 "IBM Plex Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    padding-block: 0 120px; padding-inline: 20px;
+    background-image:
+      linear-gradient(var(--grid) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+    background-size: 32px 32px, 32px 32px;
+  }
+  .mono { font-family: "IBM Plex Mono", ui-monospace, Menlo, monospace; }
+  .wrap { max-width: 1040px; margin: 0 auto; }
+  header { display: flex; justify-content: space-between; align-items: baseline; gap: 14px; flex-wrap: wrap; padding-block: 24px; border-bottom: 1px solid var(--line-soft); }
+  .brand { text-decoration: none; color: var(--ink); font-family: Archivo, sans-serif; font-weight: 800; font-stretch: 125%; font-size: 21px; letter-spacing: .01em; }
+  .brand small { font-family: "IBM Plex Mono", monospace; font-weight: 400; font-size: 12px; color: var(--ink-3); margin-left: 10px; letter-spacing: .06em; }
+  .stamp { font-family: "IBM Plex Mono", monospace; font-size: 12px; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-2); border: 1px solid var(--line); padding: 5px 10px; }
+  .stamp b { color: var(--accent); font-weight: 500; }
+
+  /* Hero */
+  .hero { padding-block: 56px 28px; }
+  .hero .draft { max-width: 920px; margin: 40px auto 0; }
+  .eyebrow { font-family: "IBM Plex Mono", monospace; font-size: 12.5px; letter-spacing: .12em; text-transform: uppercase; color: var(--ink-3); margin: 0 0 18px; }
+  h1 { font-family: Archivo, sans-serif; font-weight: 800; font-stretch: 125%; font-size: clamp(38px, 6.2vw, 68px); line-height: .98; letter-spacing: -.01em; margin: 0 0 22px; text-wrap: balance; }
+  h1 em { font-style: normal; color: var(--accent); }
+  .lede { font-size: 20px; color: var(--ink-2); max-width: 52ch; margin: 0 0 28px; }
+  .cta-row { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
+  .btn { display: inline-block; text-decoration: none; font-weight: 600; font-size: 16px; padding: 14px 20px; border: 1.5px solid var(--ink); color: var(--ink); background: transparent; }
+  .btn.primary { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+  .btn.primary:hover { filter: brightness(1.06); }
+  .fine { color: var(--ink-3); font-size: 14px; margin: 12px 0 0; }
+  .fine b { color: var(--ink-2); font-weight: 500; }
+
+  /* Blueprint diagram */
+  .draft { border: 1px solid var(--line); padding: 14px; position: relative; background: rgba(10,31,54,.55); }
+  .draft::before { content: "FIG. 1 — MODULE MAP · AS IN NOW IN ANDROID"; position: absolute; top: -9px; left: 14px; background: var(--bp); padding: 0 8px; font: 11px/1 "IBM Plex Mono", monospace; letter-spacing: .12em; color: var(--ink-3); }
+  .draft svg { width: 100%; height: auto; display: block; }
+
+  /* Sections */
+  h2 { font-family: Archivo, sans-serif; font-weight: 700; font-stretch: 112%; font-size: 30px; line-height: 1.1; margin: 0 0 8px; letter-spacing: -.005em; }
+  .sec { padding-block: 44px 8px; border-top: 1px solid var(--line-soft); margin-top: 40px; }
+  .sec-head { display: grid; grid-template-columns: 70px 1fr; gap: 16px; align-items: start; margin-bottom: 22px; }
+  .sec-head .no { font-family: "IBM Plex Mono", monospace; color: var(--ink-3); font-size: 13px; letter-spacing: .1em; padding-top: 10px; }
+  .sec-head p { margin: 6px 0 0; color: var(--ink-2); max-width: 62ch; }
+
+  /* Spec sheet (paper insert) */
+  .sheet { background: var(--paper); color: var(--paper-ink); padding: 26px 26px 10px; box-shadow: 0 20px 50px rgba(0,0,0,.35); }
+  .sheet .title { font-family: "IBM Plex Mono", monospace; font-size: 12px; letter-spacing: .12em; text-transform: uppercase; color: var(--paper-ink-2); border-bottom: 1px solid var(--paper-ink); padding-bottom: 8px; margin-bottom: 4px; display: flex; justify-content: space-between; }
+  .spec { display: grid; grid-template-columns: 210px 1fr; gap: 0 22px; border-bottom: 1px solid var(--paper-line); padding: 14px 0; }
+  .spec:last-child { border-bottom: 0; }
+  @media (max-width: 640px) { .spec { grid-template-columns: 1fr; gap: 4px; } }
+  .spec dt { font-weight: 600; margin: 0; }
+  .spec dd { margin: 0; color: var(--paper-ink-2); }
+  .spec dd code { font-family: "IBM Plex Mono", monospace; font-size: 13.5px; color: var(--paper-ink); background: #ECE8DE; padding: 1px 5px; }
+
+  /* Pillars */
+  .pillars { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 0; border: 1px solid var(--line); }
+  .pillar { padding: 22px; border-right: 1px solid var(--line-soft); }
+  .pillar:last-child { border-right: 0; }
+  @media (max-width: 760px) { .pillar { border-right: 0; border-bottom: 1px solid var(--line-soft); } .pillar:last-child { border-bottom: 0; } }
+  .pillar .k { font-family: "IBM Plex Mono", monospace; font-size: 12px; letter-spacing: .1em; color: var(--ink-3); margin-bottom: 10px; }
+  .pillar h3 { font-family: Archivo, sans-serif; font-weight: 700; font-stretch: 112%; font-size: 21px; margin: 0 0 8px; }
+  .pillar p { margin: 0; color: var(--ink-2); font-size: 15.5px; }
+
+  /* Code block */
+  pre { background: var(--bp-deep); border: 1px solid var(--line-soft); color: var(--ink-2); padding: 18px 20px; overflow-x: auto; font: 13.5px/1.55 "IBM Plex Mono", monospace; margin: 0; }
+  pre .c { color: var(--ink-3); } pre .h { color: var(--ink); } pre .a { color: var(--accent); }
+
+  /* Test pyramid */
+  .two { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr); gap: 28px; align-items: center; }
+  @media (max-width: 760px) { .two { grid-template-columns: 1fr; } }
+  .pyr svg { width: 100%; height: auto; display: block; }
+  ul.plain { margin: 0; padding-left: 18px; color: var(--ink-2); }
+  ul.plain li { margin: 6px 0; }
+
+  /* Launch modules list */
+  .mods { columns: 2; column-gap: 40px; margin: 0; padding-left: 18px; color: var(--ink-2); }
+  @media (max-width: 640px) { .mods { columns: 1; } }
+  .mods li { margin: 6px 0; break-inside: avoid; }
+  .mods b { color: var(--ink); font-weight: 600; }
+
+  /* Order block */
+  .order { border: 1.5px solid var(--ink); padding: 26px; display: grid; grid-template-columns: minmax(0,1fr) auto; gap: 22px; align-items: center; position: relative; margin-top: 8px; }
+  @media (max-width: 700px) { .order { grid-template-columns: 1fr; } }
+  .order::before { content: "PURCHASE ORDER · EARLY BIRD"; position: absolute; top: -9px; left: 18px; background: var(--bp); padding: 0 8px; font: 11px/1 "IBM Plex Mono", monospace; letter-spacing: .12em; color: var(--ink-3); }
+  .price { display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap; }
+  .price .now { font-family: Archivo, sans-serif; font-weight: 800; font-stretch: 125%; font-size: 56px; line-height: 1; }
+  .price .was { font-family: "IBM Plex Mono", monospace; color: var(--ink-3); font-size: 16px; }
+  .price .was s { margin-right: 6px; }
+  .order ul { margin: 12px 0 0; padding-left: 18px; color: var(--ink-2); }
+  .order li { margin: 4px 0; }
+  .tease { font-family: Archivo, sans-serif; font-weight: 700; font-stretch: 112%; font-size: 24px; line-height: 1.2; margin: 0 0 18px; max-width: 30ch; text-wrap: balance; }
+  .note { border-left: 2px solid var(--ok); padding: 8px 14px; color: var(--ink-2); margin: 20px 0 0; font-size: 15px; }
+
+  details { border-top: 1px solid var(--line-soft); padding: 14px 0; }
+  details:last-of-type { border-bottom: 1px solid var(--line-soft); }
+  summary { cursor: pointer; font-weight: 600; }
+  details p { color: var(--ink-2); margin: 8px 0 0; max-width: 70ch; }
+  footer { border-top: 1px solid var(--line-soft); margin-top: 48px; padding-top: 18px; color: var(--ink-3); font-size: 14px; }
+  footer a { color: var(--ink-3); }
+  @media (prefers-reduced-motion: no-preference) { .btn { transition: transform .12s ease; } .btn:active { transform: translateY(1px); } }
+  a:focus-visible, summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+  .sticky { position: fixed; left: 0; right: 0; bottom: 0; z-index: 20; background: rgba(10,31,54,.92); backdrop-filter: blur(8px); border-top: 1px solid var(--line); padding: 10px 20px; }
+  .sticky-in { max-width: 1040px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; gap: 14px; flex-wrap: wrap; }
+  .sticky-txt { font-family: "IBM Plex Mono", monospace; font-size: 13px; color: var(--ink-2); }
+  .sticky-txt b { color: var(--ink); font-size: 15px; }
+  .sticky .btn { padding: 11px 18px; font-size: 15px; }
+  @media (max-width: 560px) { .sticky-txt { display: none; } .sticky-in { justify-content: center; } }
+</style>
+<style>html,body{margin:0;background:#0d2238} body{padding:40px} figure.draft{max-width:1520px;margin:0} figure.draft svg{width:100%;height:auto;display:block}</style>
+</head><body><figure class="draft" aria-label="Module map, mirroring Google's Now in Android reference app">
+    <svg viewBox="0 0 920 560" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="figt">
+      <title id="figt">Module dependency graph as in Now in Android: app depends on all feature api and impl modules and on core modules and sync:work; feature api modules depend on core:navigation; feature impl modules depend on core:ui, core:designsystem, core:domain, core:notifications and other features' api; core:domain depends on core:data; core:data depends on core:database, core:datastore, core:network, core:analytics, core:notifications and core:common; sync:work depends on core:data, core:analytics and core:notifications; build-logic convention plugins and lint apply to every module</title>
+      <defs><marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#B9C6D6"/></marker>
+      <marker id="arg" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#7BE0A8"/></marker></defs>
+      <g font-family="IBM Plex Mono, monospace" font-size="9.5" fill="#7F93AB" letter-spacing="1.5">
+        <text x="12" y="28">APP</text><text x="12" y="82">FEATURE</text><text x="12" y="176">CORE · UI + DOMAIN</text><text x="12" y="266">CORE · DATA</text><text x="12" y="356">CORE · SOURCES + LEAVES</text><text x="12" y="466">TOOLING</text>
+      </g>
+      <g stroke="#FFFFFF" stroke-opacity=".14" stroke-dasharray="3 5" fill="none">
+        <line x1="12" y1="48" x2="908" y2="48"/><line x1="12" y1="150" x2="908" y2="150"/><line x1="12" y1="240" x2="908" y2="240"/><line x1="12" y1="330" x2="908" y2="330"/><line x1="12" y1="420" x2="908" y2="420"/>
+      </g>
+      <!-- APP -->
+      <rect x="401" y="10" width="118" height="28" rx="2" fill="none" stroke="#F3F6FA" stroke-width="1.4"/>
+      <text x="460" y="29" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="12" fill="#F3F6FA">:app</text>
+      <!-- FEATURES api/impl -->
+      <g fill="none" stroke="#F3F6FA" stroke-width="1.2">
+        <rect x="181" y="64" width="138" height="24" rx="2"/><rect x="181" y="94" width="138" height="24" rx="2"/>
+        <rect x="391" y="64" width="138" height="24" rx="2"/><rect x="391" y="94" width="138" height="24" rx="2"/>
+        <rect x="601" y="64" width="138" height="24" rx="2"/><rect x="601" y="94" width="138" height="24" rx="2"/>
+      </g>
+      <g font-family="IBM Plex Mono, monospace" font-size="10" fill="#F3F6FA" text-anchor="middle">
+        <text x="250" y="80">:feature:foryou:api</text><text x="250" y="110">:feature:foryou:impl</text>
+        <text x="460" y="80">:feature:search:api</text><text x="460" y="110">:feature:search:impl</text>
+        <text x="670" y="80">:feature:topic:api</text><text x="670" y="110">:feature:topic:impl</text>
+      </g>
+      <!-- CORE row 1 -->
+      <g fill="none" stroke="#F3F6FA" stroke-width="1.2">
+        <rect x="42" y="186" width="116" height="26" rx="2"/><rect x="174" y="186" width="116" height="26" rx="2"/><rect x="322" y="186" width="116" height="26" rx="2"/><rect x="466" y="186" width="116" height="26" rx="2"/><rect x="610" y="186" width="116" height="26" rx="2"/><rect x="754" y="186" width="116" height="26" rx="2"/>
+      </g>
+      <g font-family="IBM Plex Mono, monospace" font-size="10" fill="#F3F6FA" text-anchor="middle">
+        <text x="100" y="203">:core:navigation</text><text x="232" y="203">:core:ui</text><text x="380" y="203">:core:designsystem</text><text x="524" y="203">:core:domain</text><text x="668" y="203">:core:notifications</text><text x="812" y="203">:core:analytics</text>
+      </g>
+      <!-- CORE row 2 -->
+      <g fill="none" stroke="#F3F6FA" stroke-width="1.2"><rect x="466" y="276" width="116" height="26" rx="2"/><rect x="754" y="276" width="116" height="26" rx="2"/></g>
+      <g font-family="IBM Plex Mono, monospace" font-size="10" fill="#F3F6FA" text-anchor="middle"><text x="524" y="293">:core:data</text><text x="812" y="293">:sync:work</text></g>
+      <!-- SOURCES + LEAVES -->
+      <g fill="none" stroke="#F3F6FA" stroke-width="1.2">
+        <rect x="42" y="366" width="116" height="26" rx="2"/><rect x="174" y="366" width="116" height="26" rx="2"/>
+        <rect x="322" y="366" width="116" height="26" rx="2"/><rect x="466" y="366" width="116" height="26" rx="2"/><rect x="610" y="366" width="116" height="26" rx="2"/>
+      </g>
+      <g font-family="IBM Plex Mono, monospace" font-size="10" fill="#F3F6FA" text-anchor="middle">
+        <text x="100" y="383">:core:model</text><text x="232" y="383">:core:common</text>
+        <text x="380" y="383">:core:database</text><text x="524" y="383">:core:datastore</text><text x="668" y="383">:core:network</text>
+      </g>
+      <!-- TOOLING -->
+      <rect x="300" y="452" width="320" height="28" rx="2" fill="none" stroke="#FF7A1A" stroke-width="1.4"/>
+      <text x="460" y="471" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="11" fill="#FF7A1A">build-logic · convention plugins · AGENTS.md</text>
+      <g fill="none" stroke="#7F93AB" stroke-width="1" stroke-dasharray="4 3"><rect x="42" y="452" width="116" height="26" rx="2"/><rect x="754" y="452" width="116" height="26" rx="2"/></g>
+      <g font-family="IBM Plex Mono, monospace" font-size="10" fill="#B9C6D6" text-anchor="middle"><text x="100" y="469">:lint</text><text x="812" y="469">:core:testing</text></g>
+
+      <!-- EDGES: app → features (api + impl) -->
+      <g stroke="#B9C6D6" stroke-width="1" fill="none" marker-end="url(#ar)">
+        <path d="M430,38 L262,62"/><path d="M460,38 L460,62"/><path d="M490,38 L658,62"/>
+        <!-- app → sync:work (right margin) and app → core (left margin), drawn as rails -->
+        <path d="M519,24 C700,24 812,120 812,274"/>
+        <path d="M401,24 C110,24 60,120 226,184"/>
+      </g>
+      <!-- api → core:navigation -->
+      <g stroke="#B9C6D6" stroke-width="1" fill="none" marker-end="url(#ar)">
+        <path d="M181,76 C130,80 104,120 100,184"/>
+        <path d="M391,72 C300,50 120,60 104,184"/>
+        <path d="M601,70 C420,40 118,50 108,184"/>
+      </g>
+      <!-- impl → ui, designsystem, domain, notifications -->
+      <g stroke="#B9C6D6" stroke-width="1" fill="none" marker-end="url(#ar)">
+        <path d="M230,118 L232,184"/><path d="M262,118 L372,184"/><path d="M290,118 L514,184"/><path d="M312,118 L652,184"/>
+        <path d="M420,118 L244,184"/><path d="M448,118 L386,184"/><path d="M470,118 L520,184"/><path d="M500,118 L662,184"/>
+        <path d="M620,118 L256,184"/><path d="M640,118 L396,184"/><path d="M660,118 L532,184"/><path d="M680,118 L668,184"/>
+      </g>
+      <!-- impl → other feature api (allowed) -->
+      <path d="M319,100 C360,60 560,52 604,66" stroke="#7BE0A8" stroke-width="1" fill="none" stroke-dasharray="3 3" marker-end="url(#arg)"/>
+      <!-- ui → designsystem ; domain → data ; data → sources, analytics, notifications ; sync → data, notifications, analytics -->
+      <g stroke="#B9C6D6" stroke-width="1" fill="none" marker-end="url(#ar)">
+        <path d="M290,199 L320,199"/>
+        <path d="M524,212 L524,274"/>
+        <path d="M500,302 L390,364"/><path d="M524,302 L524,364"/><path d="M548,302 L658,364"/>
+        <path d="M582,286 L640,214"/><path d="M582,282 L790,214"/>
+        <path d="M754,289 L584,289"/><path d="M780,276 L700,214"/><path d="M812,276 L812,214"/>
+      </g>
+      <!-- build-logic applies to all -->
+      <g stroke="#FF7A1A" stroke-opacity=".5" stroke-width="1" stroke-dasharray="2 4" fill="none">
+        <path d="M380,450 L380,394"/><path d="M460,450 L460,320"/><path d="M540,450 L540,394"/>
+      </g>
+      <!-- RULES -->
+      <g font-family="IBM Plex Mono, monospace" font-size="9.5" fill="#7F93AB">
+        <text x="12" y="138">rule 1 · an impl depends on other features only through their :api (green) · every :api depends on :core:navigation</text>
+        <text x="12" y="228">rule 2 · core never depends on feature or app · features reach data only through :core:domain</text>
+        <text x="12" y="318">rule 3 · :app also depends on :core:ui, :designsystem, :data, :model, :common, :analytics (left rail) and :sync:work (right rail)</text>
+        <text x="12" y="408">leaves · :core:model and :core:common are used by ui, domain, data, network, database, datastore, notifications — arrows omitted for clarity</text>
+        <text x="12" y="498">rule 4 · every module is configured by the same convention plugins, lint checks and test rules</text>
+        <text x="908" y="548" text-anchor="end">module names and edges as declared in Now in Android's build files · scale 1 → 40+ modules</text>
+      </g>
+    </svg>
+  </figure></body></html>

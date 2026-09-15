@@ -1,0 +1,5 @@
+Hi mods. My post was auto-removed by Reddit's filters, I think because my account is new with almost no karma. It's a discussion post about keeping Google's recommended app architecture from eroding (lint rules, dependency-guard, AGENTS.md), with three questions for people running modularized apps. No link in the body; I mention at the end that I'm packaging the setup into a kit and offered to leave the link in a comment only if people ask. Happy to remove that line if you prefer.
+
+https://www.reddit.com/r/androiddev/comments/1wh31ma/
+
+Could you take a look and approve it if it fits the rules? Thanks.

@@ -1,0 +1,1 @@
+Saw your post about <their pain>. I'm building exactly the fix — NIA's module graph with lint that fails the build on layer violations + an AGENTS.md. Would this have saved you the rewrite? https://ahaariyan.github.io/presell/launchkit/?utm_source=xhttps://ahaariyan.github.io/presell/launchkit/utm_medium=dmhttps://ahaariyan.github.io/presell/launchkit/utm_campaign=presell-sep2026
