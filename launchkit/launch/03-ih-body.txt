@@ -1,4 +1,4 @@
 Web has ShipFast. React Native has kits. Native Android has nothing with billing, a paywall, and real architectural guardrails.
 LaunchKit is Google's recommended architecture (Now in Android's module graph, name for name) plus the discipline layer: lint that fails the build on layer violations, a code of conduct, an AI-agent guideline, and tests at every layer with guidance. Then the launch modules every paid app needs.
 I'm selling it before building it — email reservations now, checkout next week, refund if v1 misses 1 Oct.
-Feedback wanted on the spec sheet and the price: https://ahaariyan.github.io/presell/launchkit/?utm_source=indiehackershttps://ahaariyan.github.io/presell/launchkit/utm_medium=posthttps://ahaariyan.github.io/presell/launchkit/utm_campaign=presell-sep2026
+Feedback wanted on the spec sheet and the price: https://ahaariyan.github.io/presell/launchkit/?utm_source=indiehackers&utm_medium=post&utm_campaign=presell-sep2026
