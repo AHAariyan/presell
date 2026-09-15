@@ -1,6 +1,5 @@
-Your Android codebase has a half-life.
+Ship a paid Android app in days, not months.
 
-Day 1: clean layers, tidy modules.
-Month 6: a ViewModel calls a DAO "just this once", a Composable does business logic, and the AI agent you let commit added a fourth nav pattern.
+Billing, paywall, onboarding, settings, sign-in, analytics, in-app review, CI to a signed bundle. Already built. You add your feature and press release.
 
-We're building the kit that stops the decay. 🧵
+LaunchKit for Android. Pre-orders are open. 🧵

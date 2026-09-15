@@ -1,4 +1,3 @@
-It starts from Google's own architecture: the exact module graph of Now in Android.
-:app → :feature:*:api/impl → :core:* → data sources, convention plugins underneath.
+Most starter kits hand you screens and leave you a mess by month six.
 
-Not "inspired by". Same names, same rules. Fig. 1 on the page is drawn from NIA's build files.
+LaunchKit starts on Google's recommended app architecture, laid out exactly like Now in Android, and adds lint that fails the build the moment anyone crosses a layer.

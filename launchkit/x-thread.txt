@@ -1,33 +1,36 @@
-Your Android codebase has a half-life.
+Ship a paid Android app in days, not months.
 
-Day 1: clean layers, tidy modules.
-Month 6: a ViewModel calls a DAO "just this once", a Composable does business logic, and the AI agent you let commit added a fourth nav pattern.
+Billing, paywall, onboarding, settings, sign-in, analytics, in-app review, CI to a signed bundle. Already built. You add your feature and press release.
 
-We're building the kit that stops the decay. 🧵
-
-=====
-
-It starts from Google's own architecture: the exact module graph of Now in Android.
-:app → :feature:*:api/impl → :core:* → data sources, convention plugins underneath.
-
-Not "inspired by". Same names, same rules. Fig. 1 on the page is drawn from NIA's build files.
+LaunchKit for Android. Pre-orders are open. 🧵
 
 =====
 
-Then it adds what Google's sample doesn't ship:
-• lint that FAILS THE BUILD when a layer is crossed
-• a code of conduct for the codebase
-• AGENTS.md so Claude/Gemini/Cursor extend the app without eroding it
-• tests at every layer + a guide that says how much is enough
+Most starter kits hand you screens and leave you a mess by month six.
+
+LaunchKit starts on Google's recommended app architecture, laid out exactly like Now in Android, and adds lint that fails the build the moment anyone crosses a layer.
 
 =====
 
-And the boring parts every paid app rebuilds:
-Play Billing 9 + a real paywall, onboarding, settings, optional sign-in, analytics/crash hooks behind interfaces, in-app review, privacy + Data-safety generators, CI to a signed bundle.
+Using Claude Code, Cursor or Copilot on your app? They read the AGENTS.md that ships in every module: where things go, how to add a feature, what never to touch.
+
+The agents stay inside the lines. Your architecture holds.
 
 =====
 
-v1 ships 1 Oct. Early bird $79 (then $149). Reserve now, no card needed:
-https://ahaariyan.github.io/presell/launchkit/
+What's inside:
+• Play Billing + a real paywall
+• Onboarding + settings
+• Sign-in, analytics, crash hooks behind interfaces
+• Tests at every layer + a guide on how much is enough
+• Privacy policy + Data-safety generators
+• GitHub Actions to a signed bundle
 
-What's the one rule you wish your build enforced automatically?
+=====
+
+$79 early bird for the first 50, then $149. v1 ships 1 Oct. Full refund if it slips.
+
+Reserve now, no card needed:
+https://ahaariyan.github.io/presell/launchkit/?utm_source=x&utm_medium=thread&utm_campaign=presell-sep2026
+
+What would you want in v1? Reply and I'll add the best answers.

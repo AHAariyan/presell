@@ -1,0 +1,5 @@
+Web has ShipFast. React Native has launch kits. Native Android has nothing with billing, a paywall, and real architectural guardrails.
+
+LaunchKit is Google's recommended app architecture, laid out exactly like Now in Android, plus the discipline layer that keeps it that way: custom lint rules that fail the build on layer violations, a code of conduct for the repo, an AGENTS.md so Claude, Gemini and Cursor extend the app without eroding it, and tests at every layer with guidance on how much is enough. Then the launch modules every paid app rebuilds: Play Billing and paywall, onboarding, settings, sign-in, analytics and crash hooks, in-app review, privacy and Data-safety generators, CI to a signed bundle.
+
+Selling it before building it: $79 early bird for the first 50, then $149. v1 ships 1 October 2026, full refund if it slips.
