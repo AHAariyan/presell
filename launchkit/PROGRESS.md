@@ -1,6 +1,6 @@
 # LaunchKit for Android — progress log and next steps
 
-Last updated: 2026-09-15 23:30 (Asia/Dhaka)
+Last updated: 2026-09-15 23:55 (Asia/Dhaka)
 
 ## What this is
 A pre-sell test for a paid Jetpack Compose launch kit. Rule: sell before building. Nothing gets built until strangers reserve.
@@ -27,14 +27,23 @@ Page: https://ahaariyan.github.io/presell/launchkit/
 | Indie Hackers product listing | Blocked: "Could not verify your account"; profile @ah_hady not yet completed; retry after profile + email verification, else next week |
 | Launch helper `launch.sh` and per-channel texts in `launch/` | Done |
 
+## Decision 2026-09-15 23:55: observe X for 24 hours before any other channel
+X is the only channel that went live cleanly. Reddit is out (account banned, appeal filed). Indie Hackers is gated. Kotlin Slack invite and Kotlin Weekly email are pending on the user's side.
+Until 2026-09-16 ~23:00 Dhaka: no new posts anywhere. Watch PostHog (visitors from t.co, reserve_click) and the inbox (reservation emails). Reply to every X reply within 12 hours.
+Then resume the channel list below in order.
+
 ## Not done yet (in order)
-1. **Kotlin Slack** (#android, #compose) and **Android Dev Discord** (#self-promotion): paste `launch/04-slack-discord.txt`. No account gates. Most likely source of real buyers.
-2. **Android Weekly**: submit the page at androidweekly.net with `launch/05-androidweekly-title.txt`.
-3. **Ten direct messages** on X/LinkedIn to people complaining about NIA complexity, Play Billing, or AI tools breaking architecture: `launch/06-dm-template.txt`.
-4. Reply to your own X post 5 within the day: "If you build Android apps, tell me the one lint rule you'd want first. I'll add the best answers to v1."
-5. When the first reservation email arrives: create the Gumroad product (pre-order, $79, release 2026-10-01) and set `CHECKOUT_URL` in `index.html`, then re-post "checkout is open".
-6. Indie Hackers: complete profile (bio in this file's history), verify email, retry the product form once.
-7. Reddit: wait for the ban appeal. If reinstated, earn ~50 karma with helpful comments before any post. No further Reddit activity this launch.
+1. **LinkedIn post from the owner's personal profile** (no gate; nine years of connections). Copy to be written.
+2. **Kotlin Slack** (#android, #compose): paste `launch/04-slack-discord.txt` once the invite email arrives. No karma gate.
+3. **Kotlin Weekly**: send the draft already open in Mail (`launch/05-kotlinweekly-email.txt`).
+4. **Android Weekly**: submitted 2026-09-16 00:05 via the /links form (URL only; no acknowledgement). Editor picks for the Sunday issue.
+5. **Ten direct messages** on X/LinkedIn to people complaining about NIA complexity, Play Billing, or AI tools breaking architecture: `launch/06-dm-template.txt`.
+6. Reply to your own X post 5 within the day: "If you build Android apps, tell me the one lint rule you'd want first. I'll add the best answers to v1."
+7. When the first reservation email arrives: create the Gumroad product (pre-order, $79, release 2026-10-01) and set `CHECKOUT_URL` in `index.html`, then re-post "checkout is open".
+8. Indie Hackers: complete profile (bio in this file's history), verify email, retry the product form once.
+9. Reddit: wait for the ban appeal. If reinstated, earn ~50 karma with helpful comments before any post. No further Reddit activity this launch.
+
+Note: the Android Dev Discord invite code "androiddev" is dead; the current invite is behind the Discord Server bookmark on the r/androiddev page. Parked.
 
 ## Daily routine (2 minutes)
 - Inbox: count reservation emails. That is the real number.
