@@ -1,1 +1,14 @@
-Saw your post about <their pain>. I'm building exactly the fix — NIA's module graph with lint that fails the build on layer violations + an AGENTS.md. Would this have saved you the rewrite? https://ahaariyan.github.io/presell/launchkit/?utm_source=x&utm_medium=dm&utm_campaign=presell-sep2026
+REPLY TEMPLATE (adapt the first sentence to their post every time):
+
+[One sentence that shows you read their post, e.g. "Been there, the third time I wired Play Billing I swore never again."] I'm building the fix: Google's recommended architecture, laid out like Now in Android, with lint that fails the build on layer violations and an AGENTS.md per module so AI agents stay inside the lines. Billing, paywall, onboarding, CI already done. Spec sheet, if useful: https://ahaariyan.github.io/presell/launchkit/?utm_source=x&utm_medium=dm&utm_campaign=presell-sep2026
+
+SEARCH QUERIES (paste into X search, choose "Latest"):
+1. "Now in Android" complex
+2. "Now in Android" overkill
+3. "Play Billing" hours OR days OR pain
+4. "Jetpack Compose" architecture mess
+5. Copilot OR Cursor OR "Claude Code" broke architecture android
+6. modularization android regret
+7. "convention plugins" gradle pain
+
+TARGET: 10 replies today, each different, each from @android_launch. Log the handle and post URL in PROGRESS.md.
