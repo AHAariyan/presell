@@ -1,0 +1,11 @@
+Hi,
+
+A link for an upcoming issue, if it fits:
+
+LaunchKit for Android: ship a paid Android app in days, not months
+https://ahaariyan.github.io/presell/launchkit/?utm_source=kotlinweekly&utm_medium=newsletter&utm_campaign=presell-sep2026
+
+It's a Jetpack Compose codebase on Google's recommended app architecture, laid out like Now in Android, with Play Billing, paywall, onboarding, settings, sign-in, analytics and CI already built. The part Kotlin readers may find interesting: custom Android Lint rules that fail the build on layer violations, and an AGENTS.md per module so AI coding agents respect the module boundaries. It's a pre-order (v1 ships 1 October) with a public spec sheet and module map on the page.
+
+Thanks for the newsletter.
+Abdul Hady

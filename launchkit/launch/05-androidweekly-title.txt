@@ -1,1 +1,1 @@
-LaunchKit — a Compose codebase on NIA's architecture with lint guardrails and an AI-agent guideline (pre-order)
+LaunchKit for Android: ship a paid Android app in days, not months (pre-order)

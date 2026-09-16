@@ -33,7 +33,7 @@ Until 2026-09-16 ~23:00 Dhaka: no new posts anywhere. Watch PostHog (visitors fr
 Then resume the channel list below in order.
 
 ## Not done yet (in order)
-1. **LinkedIn post from the owner's personal profile** (no gate; nine years of connections). Copy to be written.
+1. LinkedIn: dropped, the owner does not post personal projects there.
 2. **Kotlin Slack** (#android, #compose): paste `launch/04-slack-discord.txt` once the invite email arrives. No karma gate.
 3. **Kotlin Weekly**: send the draft already open in Mail (`launch/05-kotlinweekly-email.txt`).
 4. **Android Weekly**: submitted 2026-09-16 00:05 via the /links form (URL only; no acknowledgement). Editor picks for the Sunday issue.
