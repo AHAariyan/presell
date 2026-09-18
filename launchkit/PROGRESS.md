@@ -1,6 +1,6 @@
 # LaunchKit for Android — progress log and next steps
 
-Last updated: 2026-09-15 23:55 (Asia/Dhaka)
+Last updated: 2026-09-18 (Asia/Dhaka)
 
 ## What this is
 A pre-sell test for a paid Jetpack Compose launch kit. Rule: sell before building. Nothing gets built until strangers reserve.
@@ -56,7 +56,16 @@ Note: the Android Dev Discord invite code "androiddev" is dead; the current invi
 |---|---|---|---|---|
 | 2026-09-15 | 2 (both internal) | 0 | 0 | launch day; thread reposted 23:05 |
 
-## Decision: 2026-09-18, ~23:00 Dhaka (72 h after the repost)
+## RESULT 2026-09-18: FAIL on distribution. 0 reservations, 9 visitors in 7 days (about half our own).
+
+### Post-mortem (five lines)
+1. The page never reached buyers. One thread from a day-old X account; Reddit banned the account; Indie Hackers gated; Discord invite dead; Kotlin Slack invite pending; LinkedIn ruled out by the owner. Android Weekly and Kotlin Weekly submissions unanswered.
+2. Of 9 visitors, about 4 were internal tests. Real traffic was under 5 people. No conclusion about the offer is possible from that.
+3. Everything that did work was built in a day: page, analytics, tracked links, store-style assets. The build side is not the bottleneck; audience is.
+4. Lesson kept: never launch into channels that need account age. Warm accounts (Reddit karma, X follows, Slack membership) weeks before, or pick channels with no gate (store search, owned groups, newsletters).
+5. The offer is not dead. Page, thread and assets stay up; revisit when an audience exists (Android Weekly pick, or a Kotlin Slack post) and re-measure. No further build.
+
+## Original decision rule (for the record)
 - ≥ 40 reservation emails, or ≥ 5 paid pre-orders once Gumroad is live → build v1 in the 13 days before 1 October.
 - Below that → refund anyone who paid, write a five-line post-mortem in IndieStudio/IDEA-PIPELINE.md, start the next pre-sell from `Presell/_template/`.
 - Read the miss honestly: if visitors were near zero, it's a distribution problem (no audience yet), not a product verdict. If visitors came but didn't click, it's the offer or the page.
